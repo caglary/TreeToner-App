@@ -1,24 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>All Contacts from index view</h1>
-    <div>
-    
-    
-    <a href= '{{route('contacts.create')}}'>Add Contact</a>
-
-        <?php foreach ($contacts as $id=> $contact):?>
-        <p>{{$contact['name']}} => {{$contact['phone']}} | <a href= '{{route('contacts.show',$id)}}'>Show</a></p>
-        <?php endforeach ?>
+@extends('layout.main')
+@section('title','Contact App | All Contacts')
     
 
+@section('content')
 
-    </div>
-</body>
-</html>
+<!-- content -->
+    <main class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-title">
+                  <div class="d-flex align-items-center">
+                    <h2 class="mb-0">All Contacts</h2>
+                    <div class="ml-auto">
+                      <a href="{{route('contacts.create')}}" class="btn btn-success"><i class="fa fa-plus-circle"></i> Add New</a>
+                    </div>
+                  </div>
+                </div>
+              <div class="card-body">
+                @include('contacts._filter')
+                <table class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">First Name</th>
+                      <th scope="col">Phone</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Company</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                      @each('contacts._contact', $contacts, 'contact', 'contacts._empty')
+                    
+                    
+                  </tbody>
+                </table> 
+
+                <nav class="mt-4">
+                    <ul class="pagination justify-content-center">
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                      </li>
+                    </ul>
+                  </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+      
+@endsection
+    
+
+  
