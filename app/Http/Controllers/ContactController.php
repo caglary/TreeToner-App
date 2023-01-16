@@ -8,11 +8,8 @@ use App\Repositories\CompanyRepository;
 class ContactController extends Controller
 {
     
-    public function __construct(protected CompanyRepository $company)
-    {
-       
-    }
-    public function index(CompanyRepository $company)
+   
+    public function index()
     {
         $companies=$company->pluck();
         $contacts=$this->getContacts();

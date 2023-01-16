@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kayit', function (Blueprint $table) {
+        Schema::create('kayits', function (Blueprint $table) {
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_turkish_ci';
             $table->id();
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('sonuc')->nullable();
             $table->decimal('fiyat', $precision = 8, $scale = 2);
             $table->timestamps();
-            $table->foreignId('musteri_id')->references('id')->on('musteris')->onDelete('cascade');;
+            $table->foreignId('musteri_id')->references('id')->on('musteries')->onDelete('cascade');;
         });
     }
 
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kayit');
+        Schema::dropIfExists('kayits');
     }
 };

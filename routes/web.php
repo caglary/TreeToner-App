@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\MusteriController;
 use App\Http\Controllers\WelcomeController;
 
 /*
@@ -17,29 +18,25 @@ use App\Http\Controllers\WelcomeController;
 
 
 
-Route::get('/', WelcomeController::class);
+Route::get('/', MusteriController::class)->name('musteriler');
 
-Route::controller(ContactController::class)->name('contacts.')->group(function(){
-
-    Route::get('/contacts','index')->name('index');
-
-    Route::get('/contacts/create','create')->name('create');
-    
-    Route::get('/contacts/{id}','show')->name('show');
-    
-});
+Route::post('/musteriekle', [MusteriController::class,'musteriekle'])->name('musteri_add');
+Route::get('/ekle', function(){
+    return view('treetoner._musteriAdd');
+})->name('musteri_add_get');
 
 
 
-Route::fallback(function ()
-{
-    return "<h1>Sorry, the page does not exist.</h1>";
-});
 
-Route::get('/companies/{name?}', function($name = null) {
-    if($name){
-        return "Company ".$name;
-    }else{
-        return "All Companies";
-    }
-})->whereAlphaNumeric('name');
+Route::get('/musteri_show/{id}', [MusteriController::class, 'show'])->name('musteri_show');
+Route::get('/musteri_delete/{id}',[MusteriController::class,'delete'])->name('musteri_sil');
+Route::get('/musteri_edit/{id}',[MusteriController::class,'edit'])->name('musteri_edit');
+Route::post('/musteri_update/{id}',[MusteriController::class,'update'])->name('musteri_update');
+
+
+
+
+
+
+
+
