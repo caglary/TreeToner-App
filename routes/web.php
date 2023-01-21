@@ -20,6 +20,8 @@ use App\Http\Controllers\WelcomeController;
 
 Route::get('/', MusteriController::class)->name('musteriler');
 
+
+
 Route::post('/musteriekle', [MusteriController::class,'musteriekle'])->name('musteri_add');
 Route::get('/ekle', function(){
     return view('treetoner._musteriAdd');
@@ -32,6 +34,8 @@ Route::get('/musteri_show/{id}', [MusteriController::class, 'show'])->name('must
 Route::get('/musteri_delete/{id}',[MusteriController::class,'delete'])->name('musteri_sil');
 Route::get('/musteri_edit/{id}',[MusteriController::class,'edit'])->name('musteri_edit');
 Route::post('/musteri_update/{id}',[MusteriController::class,'update'])->name('musteri_update');
+Route::post('/search',[MusteriController::class,'search'])->name('musteri_search');
+
 
 
 

@@ -32,6 +32,8 @@ class MusteriController extends Controller
 
         return $this->GetAll();
     }
+
+
     public function show($id){
         $musteri=Musteri::find($id);
         
@@ -39,6 +41,8 @@ class MusteriController extends Controller
         
         return view('treetoner._musteriShow')->with('musteri',$musteri);
     }
+
+
     public function delete($id){
         $musteri=Musteri::find($id);
         $musteri->delete();
@@ -63,5 +67,17 @@ class MusteriController extends Controller
         return view('treetoner._musteriShow')->with('musteri',$musteri);
         
         
+    }
+
+    public function search(Request $request)
+    {
+        //$text =$request->get('search');
+        $musteries = Musteri::when($request->search, function ($query, $text) {
+            //return $query->where('adi_soyadi', $text);
+            return $query->where('adi_soyadi','like','%'.$text.'%');
+
+          })->paginate(10);
+          return view('treetoner.index', ['musteries' => $musteries]);
+      
     }
 }

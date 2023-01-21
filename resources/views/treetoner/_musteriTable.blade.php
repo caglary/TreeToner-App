@@ -1,16 +1,18 @@
 <div class="center">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">               
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Ara" aria-label="Search">
+        <div class="collapse navbar-collapse"> <a href="{{ route('musteri_add_get')}}" class="btn btn-outline-secondary">musteri ekle</a></div>    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">  
+                  
+            <form class="d-flex" role="search" action="{{route('musteri_search')}}" method="post">
+              @csrf
+              <input class="form-control me-2" type="search" name="search" placeholder="Ara" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Ara</button>
             </form>
         </div>
       </div>
     </nav>
-
+   
   
   <table class="table" >
     <thead>
@@ -19,7 +21,7 @@
         <th scope="col">Adı Soyadı</th>
         <th scope="col">Telefon-1</th>
         <th scope="col">Telefon-2</th>
-        <th scope="col">   <a href="{{ route('musteri_add_get')}}" class="btn btn-outline-secondary">musteri ekle</a> </th>
+      
         
         
       </tr>
