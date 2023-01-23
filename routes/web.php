@@ -41,6 +41,11 @@ Route::get('/siparisler/{musteri_id}',[KayitController::class,'index'])->name('s
 
 Route::get('/siparis_create/{musteri_id}',[KayitController::class,'create'])->name('siparis_create');
 Route::post('/siparisler/{musteri_id}', [KayitController::class,'store'])->name('siparis_kaydet');
+Route::get('/siparis_show/{siparis_id}/{musteri_id}',[KayitController::class,'show'])->name('siparis_show');
+Route::post('/siparisler/{siparis_id}/{musteri_id}',[KayitController::class,'update'])->name('siparis_update');
+
+
+
 
 
 

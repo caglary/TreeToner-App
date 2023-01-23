@@ -71,6 +71,36 @@ class KayitController extends Controller
         return redirect()->route('siparis_index', ['musteri_id' => $siparis->musteri_id]);
     }
 
+    public function show($siparis_id,$musteri_id){
+        $siparis= Kayit::find($siparis_id);
+        return view('treetoner.siparisler.show',['siparis_id'=>$siparis_id,'musteri_id'=>$musteri_id])->with('siparis',$siparis);
+    }
+    public function update($siparis_id,$musteri_id,Request $request){
+        $siparis= Kayit::find($siparis_id);
+        $siparis->yazici_model=$request->get('yazici_model');
+        $siparis->yazici_seri_no=$request->get('yazici_seri_no');
+        $siparis->ariza=$request->get('ariza');
+        $siparis->aciklama=$request->get('aciklama');
+        $siparis->sonuc=$request->get('sonuc');
+        $siparis->fiyat=$request->get('fiyat');
+        if($request->get('usb_kablo')!=null){
+            $siparis->usb_kablo="var";
+        }
+        else{
+            $siparis->usb_kablo="yok";
+
+        }
+        if($request->get('power_kablo')!=null){
+            $siparis->power_kablo="var";
+        }
+        else{
+            $siparis->power_kablo="yok";
+
+        }
+       $siparis->save();
+
+        return redirect()->route('siparis_index',['musteri_id'=>$siparis->musteri_id]);
+    }
 
 }
 
