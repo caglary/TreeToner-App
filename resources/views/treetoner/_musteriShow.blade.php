@@ -55,9 +55,9 @@
                   <hr>
                   <div class="form-group row mb-0">
                     <div class="col-md-9 offset-md-3">
-                        <a href="{{ route('musteri_edit',$musteri['id'])}}" class="btn btn-info">Değiştir</a>
-                        <a href="{{ route('musteri_sil',$musteri['id'])}}" class="btn btn-outline-danger">Sil</a>
-                        <a href="{{ route('musteriler')}}" class="btn btn-outline-secondary">Geri</a>
+                        <a href="{{ route('musteri_edit',$musteri['id'])}}" class="btn btn-info">Düzlet</a>
+                        <a href="{{ route('musteri_sil',$musteri['id'])}}" class="btn btn-danger">Sil</a>
+                        <a href="{{ route('musteriler')}}" class="btn btn-secondary">Geri</a>
                     </div>
                   </div>
                 </div>

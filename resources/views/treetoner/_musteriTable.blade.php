@@ -1,7 +1,7 @@
 <div class="center">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <div class="collapse navbar-collapse"> <a href="{{ route('musteri_add_get')}}" class="btn btn-outline-secondary">musteri ekle</a></div>    
+        <div class="collapse navbar-collapse"> <a href="{{ route('musteri_add_get')}}" class="btn btn-warning">musteri ekle</a></div>    
         <div class="collapse navbar-collapse" id="navbarSupportedContent">  
                   
             <form class="d-flex" role="search" action="{{route('musteri_search')}}" method="post">
@@ -38,9 +38,9 @@
             <td>{{$musteri->telefon_2}}</td>    
             
 
-            <td width="150">
-                <a href="{{route('musteri_show',$musteri->id)}}" class="btn btn-sm btn-circle btn-outline-info" title="Show"><i class="fa fa-eye"></i></a>
-                              
+            <td width="250">
+                <a href="{{route('musteri_show',$musteri->id)}}" class="btn btn-sm btn-squre btn-outline-info" title="Show"><i class="fa fa">düzelt</i></a>
+                <a href="{{route('siparis_index',['musteri_id'=>$musteri->id])}}" class="btn btn-sm btn-squre btn-outline-danger" title="Show"><i class="fa fa-edit">siparişler</i></a>        
             </td>
           </tr>
       @endforeach

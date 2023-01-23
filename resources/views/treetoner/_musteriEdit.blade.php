@@ -30,7 +30,7 @@
             </div>
 
             <div class="col-auto">
-                <button type="submit" class="btn-btn" >Update</button>  
+                <button type="submit" class="btn btn-success" >Update</button>  
                 <a class="btn btn-secondary" href="{{route('musteri_show',$musteri['id'])}}" role="button">Geri</a>
 
             </div>

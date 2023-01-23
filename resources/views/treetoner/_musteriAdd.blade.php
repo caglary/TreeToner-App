@@ -30,7 +30,7 @@
             </div>
 
             <div class="col-auto">
-                <button type="submit" class="btn-btn" >Ekle</button>  
+                <button type="submit" class="btn btn-success" >Ekle</button>  
                 <a class="btn btn-secondary" href="{{route('musteriler')}}" role="button">Geri</a>
 
             </div>
