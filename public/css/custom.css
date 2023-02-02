@@ -1,21 +1,26 @@
 body {
 	font-family: 'Varela Round', sans-serif;
 	background-color: #f7f7f7;
+	font-size:medium;
 }
 
 .navbar {
-	background: #fff;
+	background: rgb(235, 226, 226);
 	-moz-box-shadow: rgba(0, 0, 0, 0.09) 0 2px 0;
 	-webkit-box-shadow: rgba(0, 0, 0, 0.09) 0 2px 0;
 	box-shadow: rgba(0, 0, 0, 0.09) 0 2px 0;
 	padding: 10px 16px;
+	
+
 }
 
 .navbar .navbar-brand {
 	font-weight: bold;
 	letter-spacing: -1px;
-	font-size: 20px;
+	font-size: 15px;
 	color: #dd5638;
+	
+
 }
 
 .navbar-light .navbar-nav .active>.nav-link {
@@ -24,6 +29,8 @@ body {
 
 .fileinput {
 	text-align: center;
+	
+
 }
 
 .btn-circle {
@@ -34,6 +41,8 @@ body {
   font-size: 12px;
   line-height: 1.428571429;
   border-radius: 15px;
+	
+
 }
 
 ul.pagination {
@@ -41,16 +50,25 @@ ul.pagination {
 }
 
 .card-title {
-    color: #fff;
-    background: #435d7d;
+    color: rgb(171, 89, 89);
+    background: #476180;
     padding: 16px 20px;
 }
 
 .footer {
 	background-color: #435d7d; 
 	color: #f7f7f7;
+	position: fixed;
+	height: 30px;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+
 }
 
 .footer a {
 	color: #d9d9d9;
+	
+
 }

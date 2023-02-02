@@ -9,6 +9,10 @@ use Illuminate\Support\facades\DB;
 
 class MusteriController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function __invoke(){
         
@@ -17,7 +21,7 @@ class MusteriController extends Controller
     }
     public function GetAll(){
         $musteries=DB::table('musteries')->orderby('created_at','desc')->get()->take(5);
-        return view('treetoner.index',compact('musteries'));
+        return view('treetoner.musteri.index',compact('musteries'));
     }
     public function musteriekle(Request $request){
         
@@ -39,7 +43,7 @@ class MusteriController extends Controller
         
         abort_if(!isset($musteri),404);
         
-        return view('treetoner._musteriShow')->with('musteri',$musteri);
+        return view('treetoner.musteri.show')->with('musteri',$musteri);
     }
 
 
@@ -51,7 +55,7 @@ class MusteriController extends Controller
     public function edit($id){
         $musteri=Musteri::find($id);
         
-        return view('treetoner._musteriEdit')->with('musteri',$musteri);
+        return view('treetoner.musteri.edit')->with('musteri',$musteri);
     }
     public function update(Request $request ,$id){
         $musteri=Musteri::find($id);
@@ -64,7 +68,7 @@ class MusteriController extends Controller
         $musteri->adres = $request->get('adres');
 
         $musteri->save();
-        return view('treetoner._musteriShow')->with('musteri',$musteri);
+        return view('treetoner.musteri.show')->with('musteri',$musteri);
         
         
     }
@@ -77,7 +81,7 @@ class MusteriController extends Controller
             return $query->where('adi_soyadi','like','%'.$text.'%');
 
           })->paginate(10);
-          return view('treetoner.index', ['musteries' => $musteries]);
+          return view('treetoner.musteri.index', ['musteries' => $musteries]);
       
     }
 }

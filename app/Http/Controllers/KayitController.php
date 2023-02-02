@@ -11,8 +11,13 @@ use Illuminate\Support\facades\DB;
 
 class KayitController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index($musteri_id){     
 
+        $musteri=Musteri::where('id',$musteri_id)->get();
         $siparisler= DB::table('kayits')->where('musteri_id',$musteri_id)->get();
         if(count($siparisler)==0){
             return view('treetoner.siparisler.index',['musteri_id'=>$musteri_id]);

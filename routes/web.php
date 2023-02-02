@@ -6,26 +6,13 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MusteriController;
 use App\Http\Controllers\WelcomeController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
-
 Route::get('/', MusteriController::class)->name('musteriler');
 
 
 
 Route::post('/musteriekle', [MusteriController::class,'musteriekle'])->name('musteri_add');
 Route::get('/ekle', function(){
-    return view('treetoner._musteriAdd');
+    return view('treetoner.musteri.create');
 })->name('musteri_add_get');
 
 
@@ -44,17 +31,8 @@ Route::post('/siparisler/{musteri_id}', [KayitController::class,'store'])->name(
 Route::get('/siparis_show/{siparis_id}/{musteri_id}',[KayitController::class,'show'])->name('siparis_show');
 Route::post('/siparisler/{siparis_id}/{musteri_id}',[KayitController::class,'update'])->name('siparis_update');
 
+Auth::routes([
+    'register'=>false
+]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
