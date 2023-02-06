@@ -18,7 +18,7 @@
                                     </div>&nbsp;
                                     <div>
                                         <label for="exampleFormControlInput1" class="form-label">Adı Soyadı</label>
-                                        <input type="text" name="adi_soyadi" class="form-control">
+                                        <input type="text" name="adi_soyadi" class="form-control" >
                                     </div>&nbsp;
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="telefon_1">Telefon</span>

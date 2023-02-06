@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Faker\Factory;
+use App\Models\Kayit;
 use App\Models\Musteri;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class MusteriController extends Controller
 {
@@ -20,7 +22,7 @@ class MusteriController extends Controller
         
     }
     public function GetAll(){
-        $musteries=DB::table('musteries')->orderby('created_at','desc')->get()->take(5);
+        $musteries=DB::table('musteries')->orderby('created_at','desc')->get();
         return view('treetoner.musteri.index',compact('musteries'));
     }
     public function musteriekle(Request $request){
@@ -49,8 +51,20 @@ class MusteriController extends Controller
 
     public function delete($id){
         $musteri=Musteri::find($id);
-        $musteri->delete();
-        return redirect('/');
+        $siparis=Kayit::where('musteri_id',$id)->first();
+        $exists = is_null($siparis);
+        if ($exists) {
+            $musteri->delete();
+           
+            return redirect('/');
+        }
+        else{
+            $mesaj="Silmek istediğiniz muşteri için siparişler mevcut. Öncelikle müşteriye ait siparişleri silmelisiniz.";
+            return redirect()->action(
+                [MusteriController::class, 'show'], ['id' => $id]
+            )->with('mesaj', $mesaj);
+           
+        }
     }
     public function edit($id){
         $musteri=Musteri::find($id);
@@ -73,6 +87,8 @@ class MusteriController extends Controller
         
     }
 
+    /* data table içerisindeki search input kullanıldığı için bu fonksiyona gerek kalmadı. */
+   /* 
     public function search(Request $request)
     {
         //$text =$request->get('search');
@@ -83,5 +99,5 @@ class MusteriController extends Controller
           })->paginate(10);
           return view('treetoner.musteri.index', ['musteries' => $musteries]);
       
-    }
+    } */
 }
