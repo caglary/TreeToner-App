@@ -22,7 +22,7 @@ Route::get('/musteri_show/{id}', [MusteriController::class, 'show'])->name('must
 Route::get('/musteri_delete/{id}',[MusteriController::class,'delete'])->name('musteri_sil');
 Route::get('/musteri_edit/{id}',[MusteriController::class,'edit'])->name('musteri_edit');
 Route::post('/musteri_update/{id}',[MusteriController::class,'update'])->name('musteri_update');
-Route::post('/search',[MusteriController::class,'search'])->name('musteri_search');
+/* Route::post('/search',[MusteriController::class,'search'])->name('musteri_search'); */
 
 Route::get('/siparisler/{musteri_id}',[KayitController::class,'index'])->name('siparis_index');
 
