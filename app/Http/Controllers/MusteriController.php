@@ -7,6 +7,8 @@ use App\Models\Kayit;
 use App\Models\Musteri;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\DB;
+use Validator;
+
 use Illuminate\Support\Facades\Redirect;
 
 class MusteriController extends Controller
@@ -26,7 +28,21 @@ class MusteriController extends Controller
         return view('treetoner.musteri.index',compact('musteries'));
     }
     public function musteriekle(Request $request){
-        
+        $validator = Validator::make(request()->all(), [
+            'adi_soyadi' => 'required',
+           
+        ]);
+        if ($validator->fails()) {
+            // return response()->json([
+            //     'message' => 'Lütfen ad soyad alanlarını doldurunuz.',
+            //     'bilgiler'=>$request->all()
+            
+            // ], 400);
+            // return view('treetoner.musteri.show')->with('musteri',$musteri);
+            // ->with('mesaj','mesaj geldi mi?');
+            
+        }
+
         $musteri=new Musteri;
         $musteri->kurum_adi = $request->get('kurum_adi');
         $musteri->adi_soyadi = $request->get('adi_soyadi');

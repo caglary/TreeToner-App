@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
     <nav class="navbar bg-body-tertiary">
         <form class="container-fluid justify-content-start" action="{{ route('musteri_add_get') }}">
             <button class="btn btn-outline-success me-2" type="submit">Yeni Müşteri Ekle</button>
