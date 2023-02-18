@@ -98,7 +98,7 @@
                                             <button class="btn btn-primary" type="submit">Güncelle</button>
 
                                             <a class="btn btn-secondary"
-                                                href="{{ route('siparis_index', ['musteri_id' => $musteri_id]) }}"
+                                                href="{{ route('siparis.index', ['musteri_id' => $musteri_id]) }}"
                                                 role="button">Geri</a>
 
                                         </div>

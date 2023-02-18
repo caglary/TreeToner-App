@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <form method="post" action="{{ route('musteri_update', $musteri->id) }}">
+                                <form method="post" action="{{ route('musteri.guncelle', $musteri->id) }}">
                                     @csrf
                                     <div>
                                         <label for="exampleFormControlInput1" class="form-label">Kurum Adı</label>

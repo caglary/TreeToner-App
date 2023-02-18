@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Faker\Factory;
-use App\Models\Kayit;
-use App\Models\Musteri;
-use Illuminate\Http\Request;
-use Illuminate\Support\facades\DB;
 use Validator;
 
-use Illuminate\Support\Facades\Redirect;
+
+use App\Models\Musteri;
+use App\Models\Siparis;
+use Illuminate\Http\Request;
+
+use Illuminate\Support\facades\DB;
+
 
 class MusteriController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    
 
     public function __invoke(){
         
@@ -27,21 +25,13 @@ class MusteriController extends Controller
         $musteries=DB::table('musteries')->orderby('created_at','desc')->get();
         return view('treetoner.musteri.index',compact('musteries'));
     }
-    public function musteriekle(Request $request){
-        $validator = Validator::make(request()->all(), [
+    public function Store(Request $request){
+       
+        $validated = $request->validate([
             'adi_soyadi' => 'required',
-           
         ]);
-        if ($validator->fails()) {
-            // return response()->json([
-            //     'message' => 'Lütfen ad soyad alanlarını doldurunuz.',
-            //     'bilgiler'=>$request->all()
-            
-            // ], 400);
-            // return view('treetoner.musteri.show')->with('musteri',$musteri);
-            // ->with('mesaj','mesaj geldi mi?');
-            
-        }
+       
+        
 
         $musteri=new Musteri;
         $musteri->kurum_adi = $request->get('kurum_adi');
@@ -52,7 +42,7 @@ class MusteriController extends Controller
         $musteri->adres = $request->get('adres');
         $musteri->save();
 
-        return $this->GetAll();
+        return redirect('/');
     }
 
 
@@ -67,7 +57,7 @@ class MusteriController extends Controller
 
     public function delete($id){
         $musteri=Musteri::find($id);
-        $siparis=Kayit::where('musteri_id',$id)->first();
+        $siparis=Siparis::where('musteri_id',$id)->first();
         $exists = is_null($siparis);
         if ($exists) {
             $musteri->delete();
@@ -101,6 +91,9 @@ class MusteriController extends Controller
         return view('treetoner.musteri.show')->with('musteri',$musteri);
         
         
+    }
+    public function create(){
+        return view('treetoner.musteri.create');
     }
 
     /* data table içerisindeki search input kullanıldığı için bu fonksiyona gerek kalmadı. */

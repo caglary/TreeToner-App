@@ -7,10 +7,20 @@
                     <div class="card-header card-title">
                         <strong>Müşteri Kayıt İşlemi</strong>
                     </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="card-body">
+
                         <div class="row">
                             <div class="col-md-12">
-                                <form method="post" action="{{ route('musteri_add') }}">
+                                <form method="post" action="{{ route('musteri.ekle') }}">
                                     @csrf
                                     <div>
                                         <label for="exampleFormControlInput1" class="form-label">Kurum Adı</label>
@@ -18,7 +28,7 @@
                                     </div>&nbsp;
                                     <div>
                                         <label for="exampleFormControlInput1" class="form-label">Adı Soyadı</label>
-                                        <input type="text" name="adi_soyadi" class="form-control" >
+                                        <input type="text" name="adi_soyadi" class="form-control">
                                     </div>&nbsp;
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="telefon_1">Telefon</span>

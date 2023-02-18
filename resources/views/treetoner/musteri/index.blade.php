@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
     <nav class="navbar bg-body-tertiary">
-        <form class="container-fluid justify-content-start" action="{{ route('musteri_add_get') }}">
+        <form class="container-fluid justify-content-start" action="{{ route('musteri.ekle.page') }}">
+            @csrf
             <button class="btn btn-outline-success me-2" type="submit">Yeni Müşteri Ekle</button>
 
         </form>
@@ -37,7 +38,7 @@
                         <td width="250">
                             <a href="{{ route('musteri_show', $musteri->id) }}" class="btn btn-sm btn-squre btn-outline-info"
                                 title="Show"><i class="fa fa">düzelt</i></a>
-                            <a href="{{ route('siparis_index', ['musteri_id' => $musteri->id]) }}"
+                            <a href="{{ route('siparis.index', ['musteri_id' => $musteri->id]) }}"
                                 class="btn btn-sm btn-squre btn-outline-danger" title="Show"><i
                                     class="fa fa-edit">siparişler</i></a>
                         </td>

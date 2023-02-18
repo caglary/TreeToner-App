@@ -81,7 +81,7 @@
                                         <div class="col-12">
                                             <button class="btn btn-primary" type="submit">Kaydet</button>
 
-                                            <a class="btn btn-secondary" href="{{ route('siparis_index', [$musteri_id]) }}"
+                                            <a class="btn btn-secondary" href="{{ route('siparis.index', [$musteri_id]) }}"
                                                 role="button">Geri</a>
 
                                         </div>

@@ -29,10 +29,19 @@
                             <td>{{ $siparis->fiyat }}</td>
                             <td>
 
-                                <a href="{{ route('siparis_show', ['siparis_id' => $siparis->id, 'musteri_id' => $siparis->musteri_id]) }}"
-                                    class="btn btn-sm btn-squre btn-outline-info" title="Show"><i
-                                        class="fa fa-edit">Güncelle</i></a>
+                                <form method="POST"
+                                    action="{{ route('siparis.sil', ['siparis_id' => $siparis->id, 'musteri_id' => $siparis->musteri_id]) }}">
+
+                                    <a href="{{ route('siparis_show', ['siparis_id' => $siparis->id, 'musteri_id' => $siparis->musteri_id]) }}"
+                                        class="btn btn-sm btn-squre btn-outline-info" title="Show"><i
+                                            class="fa fa-edit">Güncelle</i></a>
+
+                                            @csrf
+                                            <button class="btn btn-sm btn-squre btn-outline-danger"  type="submit">
+                                    sil</button>
+                                </form>
                             </td>
+
                         </tr>
                     @endforeach
 
@@ -49,7 +58,7 @@
                     </tr>
                 </tfoot> --}}
             </table>
-    @else
+        @else
             <div class="alert alert-info" role="alert">
                 Herhangi bir sipiriş bulunmamaktadır. Sipariş eklemek için --Sipariş Ekle-- butonuna
                 basınız.
