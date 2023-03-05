@@ -27,8 +27,15 @@
      $("#example1").DataTable({
          "responsive": true,
          "lengthChange": false,
-         "autoWidth": false,
-         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+         "autoWidth": true,
+         "paging": true,
+         "retrieve": true,
+         "searching": true,
+         "ordering": true,
+         "info": true,
+         "autoWidth": true,
+        
+         //"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
      $('#example2').DataTable({
          "paging": true,
@@ -36,7 +43,7 @@
          "searching": false,
          "ordering": true,
          "info": true,
-         "autoWidth": false,
+         "autoWidth": true,
          "responsive": true,
      });
  });

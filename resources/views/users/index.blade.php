@@ -8,8 +8,8 @@
 
     </form>
 </nav>
-    <div class="card-body">
-        <table class="table table-bordered table-striped">
+<div class="card-body" style="padding: 2%">
+    <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>Kullanıcı Adı</th>
