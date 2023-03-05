@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-title">
-                        <strong>Kullanıcı Bilgileri</strong>
+                        <strong>Yeni Kullanıcı Bilgileri</strong>
                     </div>
                     <div class="card-body">
                         <div class="row">

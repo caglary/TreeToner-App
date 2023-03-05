@@ -64,7 +64,7 @@
                                         </div>
                                         <div class="input-group col-md-3" style="margin: 5px">
                                             <span class="input-group-text">Fiyat</span>
-                                            <input type="text" name="fiyat" class="form-control" required>
+                                            <input type="text" name="fiyat" class="form-control" >
 
                                         </div>
                                         <div><input type="hidden" name="musteri_id" value={{ $musteri_id }}></div>

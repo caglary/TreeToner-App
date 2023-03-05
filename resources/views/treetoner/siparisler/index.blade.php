@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('content')
+<div class="row justify-content-center">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-header card-title">
+                <strong>Sipariş İşlemleri</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     @if (isset($siparisler))
         <!-- /.card-header -->
         <div class="card-body">
@@ -37,7 +48,7 @@
                                             class="fa fa-edit">Güncelle</i></a>
 
                                             @csrf
-                                            <button class="btn btn-sm btn-squre btn-outline-danger"  type="submit">
+                                            <button class="btn btn-sm btn-squre btn-outline-danger"  type="submit" onclick="return confirm('Siparişi silmek istediğinizden Emin misiniz?')">
                                     sil</button>
                                 </form>
                             </td>

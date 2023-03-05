@@ -40,7 +40,7 @@ class SiparisController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'fiyat' => 'required',
+            'fiyat' => 'required|integer',
             'yazici_model' => 'required',
 
         ], [

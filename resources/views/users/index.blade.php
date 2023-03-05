@@ -1,6 +1,15 @@
 @extends('layouts.app')
 @section('content')
 @include('common.alert')
+<div class="row justify-content-center">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-header card-title">
+                <strong>Kullanıcı İşlemleri</strong>
+            </div>
+        </div>
+    </div>
+</div>
 <nav class="navbar bg-body-tertiary">
     <form class="container-fluid justify-content-start" action="/users/create">
         @csrf

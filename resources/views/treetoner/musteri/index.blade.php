@@ -1,5 +1,15 @@
 @extends('layouts.app')
 @section('content')
+
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header card-title">
+                    <strong>Müşterileri İşlemleri</strong>
+                </div>
+            </div>
+        </div>
+    </div>
     <nav class="navbar bg-body-tertiary">
         <form class="container-fluid justify-content-start" action="{{ route('musteri.ekle.page') }}">
             @csrf
@@ -7,7 +17,7 @@
 
         </form>
     </nav>
-   
+
 
     <!-- /.card-header -->
     <div class="card-body" style="padding: 2%">
@@ -36,8 +46,9 @@
 
 
                         <td width="250">
-                            <a href="{{ route('musteri_show', $musteri->id) }}" class="btn btn-sm btn-squre btn-outline-info"
-                                title="Show"><i class="fa fa">düzelt</i></a>
+                            <a href="{{ route('musteri_show', $musteri->id) }}"
+                                class="btn btn-sm btn-squre btn-outline-info" title="Show"><i
+                                    class="fa fa">düzelt</i></a>
                             <a href="{{ route('siparis.index', ['musteri_id' => $musteri->id]) }}"
                                 class="btn btn-sm btn-squre btn-outline-danger" title="Show"><i
                                     class="fa fa-edit">siparişler</i></a>
