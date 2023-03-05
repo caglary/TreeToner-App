@@ -15,10 +15,10 @@ class UserController extends Controller
         $users = User::all();
         return view('users.index', compact('users'));
     }
-    public function edit()
+    public function edit($id)
     {
-
-        return view('users.edit');
+        $user = User::find($id);
+        return view('users.edit',compact('user'));
     }
     public function logout(Request $request): RedirectResponse
     {
@@ -34,7 +34,7 @@ class UserController extends Controller
     {
         $id = $request->get('id');
         $user = User::find($id);
-       
+
         $password = $request->get('password');
         $confirm_password = $request->get('confirm_password');
 
@@ -50,10 +50,56 @@ class UserController extends Controller
 
             return Redirect::back()->with('fail', 'Güncelleme işlemi başarısız.');
 
-            
+
         }
 
 
+
+
+
+    }
+
+    //for delete user
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return Redirect::back()->with('success', 'Kullanıcı silinmiştir.');
+    }
+
+    //create user
+    public function create()
+    {
+        return view('users.create');
+    }
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'confirm_password' => 'required',
+
+        ], [
+                'name.required' => 'Kullanıcı Adı bilgisini giriniz.',
+                'email.required' => 'E-mail bilgisini giriniz.',
+                'password.required' => 'Parola giriniz.',
+                'confirm_password.required' => 'Parola tekrar giriniz.'
+            ]);
+
+
+        $user = new User;
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $password = $request->get('password');
+        $confirm_password = $request->get('confirm_password');
+        if ($password == $confirm_password) {
+            $user->password = bcrypt($password);
+            $user->save();
+            return redirect()->to('/users')->with('success', 'Kullanıcı başarıyla eklendi.');
+        } else {
+            return Redirect::back()->with('fail', 'Kayıt işlemi başarısız.');
+        }
 
 
     }

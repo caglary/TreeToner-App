@@ -9,7 +9,7 @@
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
-            <h7>Hoşgeldin, {{Auth()->user()->name}}!</h7>
+            <h6 >  &nbsp &nbsp&nbsp &nbspHoşgeldin, <strong>{{Auth()->user()->name}}!</strong></h6>
         </li>
         {{-- <li class="nav-item d-none d-sm-inline-block">
           <a href="/" class="nav-link">Müşteriler</a>

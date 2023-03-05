@@ -52,7 +52,7 @@ Auth::routes([
 
 //User index -> all users
 Route::get('/users',[UserController::class,'index'])->name('users.index')->middleware('auth');
-
+//add user
 Route::get('/users/create',[UserController::class,'create'])->name('users.create')->middleware('auth');
 Route::post('/users',[UserController::class,'store'])->name('users.store')->middleware('auth');
 //user show
