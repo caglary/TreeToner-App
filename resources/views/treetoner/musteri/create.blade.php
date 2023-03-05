@@ -7,15 +7,7 @@
                     <div class="card-header card-title">
                         <strong>Müşteri Kayıt İşlemi</strong>
                     </div>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                    @include('common.alert')
                     <div class="card-body">
 
                         <div class="row">
@@ -36,7 +28,7 @@
                                             aria-describedby="basic-addon1">
                                     </div>
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="telefon_2">İş Telefonu</span>
+                                        <span class="input-group-text" id="telefon_2">İş</span>
                                         <input type="text" name="telefon_2" class="form-control" aria-label="telefon"
                                             aria-describedby="basic-addon1">
                                     </div>

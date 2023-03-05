@@ -32,6 +32,19 @@ class UserController extends Controller
     }
     public function update(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'confirm_password' => 'required',
+
+        ], [
+                'name.required' => 'Kullanıcı Adı bilgisini giriniz.',
+                'email.required' => 'E-mail bilgisini giriniz.',
+                'password.required' => 'Parola giriniz.',
+                'confirm_password.required' => 'Parola tekrar giriniz.'
+            ]);
+
         $id = $request->get('id');
         $user = User::find($id);
 
