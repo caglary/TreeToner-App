@@ -1,10 +1,13 @@
 <?php
 
+
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\MusteriController;
 use App\Http\Controllers\SiparisController;
+use App\Http\Controllers\Auth\RegisterController;
 
 
 Route::get('/', MusteriController::class)->name('musteriler')->middleware('auth');
@@ -32,9 +35,41 @@ Route::post('/siparisler/{siparis_id}/{musteri_id}', [SiparisController::class, 
 Route::post('/siparis_delete/{siparis_id}/{musteri_id}',[SiparisController::class,'destroy'])->name('siparis.sil');
 
 Auth::routes([
-    'register' => true
+    
 ]);
+ 
+// Route::get('/auth/register', function () {
+//     return view('auth.register');
+// })->middleware('auth');
+
+// Route::post('/register',[RegisterController::class,'create'])->name('register.user')->middleware('auth');
+
+// Route::get('/reset/password', function () {
+//     return view('auth.passwords.reset');
+// })->middleware('auth');
+
+// Route::post('/password/update',[ResetPasswordController::class,'update'])->name('update.password')->middleware('auth');
+
+//User index -> all users
+Route::get('/users',[UserController::class,'index'])->name('users.index')->middleware('auth');
+
+Route::get('/users/create',[UserController::class,'create'])->name('users.create')->middleware('auth');
+Route::post('/users',[UserController::class,'store'])->name('users.store')->middleware('auth');
+//user show
+Route::get('/users/{user}',[UserController::class,'show'])->name('users.show')->middleware('auth');
+//user edit form
+Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edit')->middleware('auth');
+//user update
+Route::put('/users/{user}',[UserController::class,'update'])->name('users.update')->middleware('auth');
+Route::delete('/users/{id}',[UserController::class,'destroy'])->name('users.destroy')->middleware('auth');
+
+Route::get('/logout',[UserController::class,'logout'])->middleware('auth');
 
 
 
-//Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+
+
+

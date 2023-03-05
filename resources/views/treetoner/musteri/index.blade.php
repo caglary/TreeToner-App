@@ -10,7 +10,7 @@
    
 
     <!-- /.card-header -->
-    <div class="card-body">
+    <div class="card-body" style="padding: 2%">
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>

@@ -1,18 +1,15 @@
-@extends('layouts.app')
-
-@section('content')
+@include('layouts.header')
 
 
 
-
-<div class="container" style="padding: 5%">
+<div class="container" style="padding: 10%">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <div style="padding: 5%" > <a href="{{ route('login') }}">
-                        <img src="/img/treetonerlogosmall.png"  alt="Treetoner Logo" class="rounded mx-auto d-block" >
-                    </a></div>
+                    <div style="padding: 5%"> <a href="{{ route('login') }}">
+                            <img src="/img/treetonerlogosmall.png" alt="Treetoner Logo" class="rounded mx-auto d-block">
+                        </a></div>
                 </div>
 
                 <div class="card-body">
@@ -23,7 +20,8 @@
                             <label for="text" class="col-md-4 col-form-label text-md-end">Kullanıcı Adı</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control @error('email') is-invalid @enderror" name="email"  required  autofocus>
+                                <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                    name="email" value="caglar.yurdakul60@gmail.com" >
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -37,7 +35,9 @@
                             <label for="password" class="col-md-4 col-form-label text-md-end">Parola</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" type="password"
+                                    class="form-control @error('password') is-invalid @enderror" name="password"
+                                    value="password" autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -47,7 +47,7 @@
                             </div>
                         </div>
 
-                        
+
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
@@ -61,7 +61,7 @@
                                     </a>
                                 @endif
                                 --}}
-                                
+
                             </div>
                         </div>
                     </form>
@@ -70,4 +70,5 @@
         </div>
     </div>
 </div>
-@endsection
+
+@include('layouts.footer')

@@ -29,14 +29,14 @@
                                     </div>
                                     
                                     <div class="form-group row">
-                                        <label for="email" class="col-md-3 col-form-label">Telefon-1</label>
+                                        <label for="email" class="col-md-3 col-form-label">Cep Telefonu</label>
                                         <div class="col-md-9">
                                             <p class="form-control-plaintext text-muted">{{ $musteri['telefon_1'] }}</p>
                                         </div>
                                     </div>
                                     
                                     <div class="form-group row">
-                                        <label for="phone" class="col-md-3 col-form-label">Telefon-2</label>
+                                        <label for="phone" class="col-md-3 col-form-label">İş Telefonu</label>
                                         <div class="col-md-9">
                                             <p class="form-control-plaintext text-muted">{{ $musteri['telefon_2'] }}</p>
                                         </div>

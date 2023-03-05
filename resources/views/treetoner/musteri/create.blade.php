@@ -31,12 +31,12 @@
                                         <input type="text" name="adi_soyadi" class="form-control">
                                     </div>&nbsp;
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="telefon_1">Telefon</span>
+                                        <span class="input-group-text" id="telefon_1">Cep Telefonu</span>
                                         <input type="text" name="telefon_1" class="form-control" aria-label="telefon"
                                             aria-describedby="basic-addon1">
                                     </div>
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="telefon_2">Telefon 2</span>
+                                        <span class="input-group-text" id="telefon_2">İş Telefonu</span>
                                         <input type="text" name="telefon_2" class="form-control" aria-label="telefon"
                                             aria-describedby="basic-addon1">
                                     </div>
