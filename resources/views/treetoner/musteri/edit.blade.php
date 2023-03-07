@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -7,6 +8,7 @@
                     <div class="card-header card-title">
                         <strong>Müşteri Güncelleme İşlemi</strong>
                     </div>
+                    @include('common.alert')
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
@@ -14,35 +16,33 @@
                                     @csrf
                                     <div>
                                         <label for="exampleFormControlInput1" class="form-label">Kurum Adı</label>
-                                        <input type="text" name="kurum_adi" class="form-control" id="kurumadi"
+                                        <input type="text" name="kurum_adi" class="form-control"
                                             value="{{ $musteri->kurum_adi }}">
                                     </div>&nbsp;
                                     <div>
-                                        <label for="exampleFormControlInput1" class="form-label">Adı Soyadı</label>
-                                        <input type="text" name="adi_soyadi" class="form-control" id="adisoyadi"
-                                            value="{{ $musteri->adi_soyadi }}">
+                                        <label for="exampleFormControlInput1" class="form-label">İsim Soyisim</label>
+                                        <input type="text" name="adi_soyadi" class="form-control"
+                                            value="{{ $musteri->adi_soyadi}}">
                                     </div>&nbsp;
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="telefon_1">Cep Telefonu</span>
-                                        <input type="text" name="telefon_1" class="form-control"
-                                            value="{{ $musteri->telefon_1 }}" aria-label="Username"
-                                            aria-describedby="basic-addon1">
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="telefon_2">İş Telefonu</span>
-                                        <input type="text" name="telefon_2" class="form-control"
-                                            value="{{ $musteri->telefon_2 }}" aria-label="Username"
-                                            aria-describedby="basic-addon1">
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="mail">E-mail</span>
-                                        <input type="mail" name="mail" class="form-control"
-                                            value="{{ $musteri->mail }}" aria-label="Username"
-                                            aria-describedby="basic-addon1">
-                                    </div>
+                                    <div>
+                                        <label for="exampleFormControlInput1" class="form-label">Cep Telefonu</label>
+                                        <input type="tel" name="cep_telefonu" class="form-control" aria-label="telefon"
+                                            aria-describedby="basic-addon1" value="{{ $musteri->telefon_1 }}"
+                                            oninput="phoneFormat(this)">
+                                    </div>&nbsp;
+                                    <div>
+                                        <label for="exampleFormControlInput1" class="form-label">İş Telefonu</label>
+                                        <input type="tel" name="is_telefonu" class="form-control" aria-label="telefon"
+                                            aria-describedby="basic-addon1" value="{{ $musteri->telefon_2 }}" oninput="phoneFormat(this)">
+                                    </div>&nbsp;
+                                    <div>
+                                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                        <input type="mail" name="mail" class="form-control" aria-label="mail"
+                                            aria-describedby="basic-addon1" value="{{ $musteri->mail }}">
+                                    </div>&nbsp;
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1" class="form-label">Adres</label>
-                                        <textarea class="form-control" name="adres" id="adres" rows="3">{{ $musteri->adres }}</textarea>
+                                        <textarea class="form-control" name="adres" rows="3">{{ $musteri->adres  }}</textarea>
                                     </div>
 
                                     <div class="col-auto">
@@ -60,4 +60,5 @@
             </div>
         </div>
     </div>
+    @include('common.telefon_format')
 @endsection

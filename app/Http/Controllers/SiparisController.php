@@ -18,12 +18,16 @@ class SiparisController extends Controller
     public function index($musteri_id)
     {
 
-        $musteri = Musteri::where('id', $musteri_id)->get();
+        $musteri = Musteri::find($musteri_id);
         $siparisler = DB::table('siparises')->where('musteri_id', $musteri_id)->get();
         if (count($siparisler) == 0) {
-            return view('treetoner.siparisler.index', ['musteri_id' => $musteri_id]);
+            return view('treetoner.siparisler.index', ['musteri_id' => $musteri_id,'musteri'=>$musteri]);
         } else {
-            return view('treetoner.siparisler.index', ['siparisler' => $siparisler, 'musteri_id' => $musteri_id]);
+            return view('treetoner.siparisler.index', [
+             'siparisler' => $siparisler,
+             'musteri_id' => $musteri_id,
+             'musteri'=>$musteri
+            ]);
         }
 
 
@@ -114,6 +118,7 @@ class SiparisController extends Controller
         // For a route with the following URI: profile/{id}
 
         return redirect()->route('siparis.index', ['musteri_id' => $musteri_id]);
+        
     }
 
 }

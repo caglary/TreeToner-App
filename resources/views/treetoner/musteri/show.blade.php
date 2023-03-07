@@ -10,7 +10,7 @@
                         <div class="card-header card-title">
                             <strong>Müşteri Detay</strong>
                         </div>
-                        
+                        @include('common.alert')
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
@@ -70,7 +70,7 @@
                                         {{ Session::get('mesaj') }}
                                     </div>
                                     <div class="col-md-8 card card-header cart-title">
-                                        <a href="{{route('siparis_index',$musteri['id'])}}"> <strong>Kişi/Kurum adına kayıtlı siparişler için tıklayınız.</strong></a>
+                                        <a href="{{route('siparis.index',$musteri['id'])}}"> <strong>Kişi/Kurum adına kayıtlı siparişler için tıklayınız.</strong></a>
                         
                                     </div>
                                 @endif

@@ -13,7 +13,16 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.index', compact('users'));
+        if (auth::user()->id == 1){
+            return view('users.index', compact('users'));
+
+        }
+        else
+        {
+            return redirect()->back()->with('fail','yetkiniz yok');
+        }
+       
+   
     }
     public function edit($id)
     {
@@ -75,9 +84,14 @@ class UserController extends Controller
     //for delete user
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        return Redirect::back()->with('success', 'Kullanıcı silinmiştir.');
+        if($id!=1){
+            $user = User::find($id);
+            $user->delete();
+            return Redirect::back()->with('success', 'Kullanıcı silinmiştir.');
+        }else{
+            return Redirect::back()->with('fail', 'Bu Kullanıcı silinemez.');
+        }
+       
     }
 
     //create user

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+@include('common.alert')
     <div class="row justify-content-center">
         <div class="col-md-3">
             <div class="card">
@@ -25,7 +25,7 @@
             <thead>
                 <tr>
                     <th>Kurum Adı</th>
-                    <th>İsim Soyisim</th>
+                    <th>Müşteri ismi</th>
                     <th>Cep Telefonu</th>
                     <th>İş Telefonu</th>
                     <th>İşlemler</th>
@@ -48,7 +48,7 @@
                         <td width="250">
                             <a href="{{ route('musteri_show', $musteri->id) }}"
                                 class="btn btn-sm btn-squre btn-outline-info" title="Show"><i
-                                    class="fa fa">düzelt</i></a>
+                                    class="fa fa">Müşteri Detay</i></a>
                             <a href="{{ route('siparis.index', ['musteri_id' => $musteri->id]) }}"
                                 class="btn btn-sm btn-squre btn-outline-danger" title="Show"><i
                                     class="fa fa-edit">siparişler</i></a>
