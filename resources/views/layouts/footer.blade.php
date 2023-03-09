@@ -31,9 +31,9 @@
          "paging": true,
          "retrieve": true,
          "searching": true,
-         "ordering": true,
+         "ordering": false,
          "info": true,
-         "autoWidth": false,
+        
         
          //"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');

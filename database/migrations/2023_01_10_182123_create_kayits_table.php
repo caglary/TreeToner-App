@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('sonuc')->nullable();
             $table->decimal('fiyat', $precision = 8, $scale = 2)->default(0);
             $table->timestamps();
-            $table->foreignId('musteri_id')->references('id')->on('musteries')->onDelete('cascade');;
+            $table->foreignId('musteri_id')->references('id')->on('musteries');
         });
     }
 

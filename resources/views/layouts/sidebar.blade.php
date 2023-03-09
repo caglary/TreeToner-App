@@ -42,6 +42,15 @@
                         </a>
                     </li>
                 @endif
+                <li class="nav-item">
+                    <a href="/kasadefteri" class="nav-link">
+                        {{-- <i class="nav-icon fas fa-th"></i> --}}
+                        <p>
+                            Kasa Defteri
+
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

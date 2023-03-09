@@ -4,8 +4,8 @@
 <div class="row justify-content-center">
     <div class="col-md-3">
         <div class="card">
-            <div class="card-header card-title">
-                <strong>Kullanıcı İşlemleri</strong>
+            <div class="card-header card-title" style="text-align: center">
+                <strong >Kullanıcı İşlemleri</strong>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
                                 @method('DELETE')
                                 <a href="/users/{{$user->id}}/edit" class="btn btn-sm btn-squre btn-outline-info"
                                     title="Show"><i class="fa fa">Güncelle</i></a>
-                                    <input type="submit"  class="btn btn-sm btn-squre btn-outline-danger" onclick="return confirm('Kullanıcıyı silmek istediğinizden Emin misiniz?')" value="Sil">
+                                    <input type="submit"  class="btn btn-sm btn-squre btn-outline-danger" onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')" value="Sil">
                                     
                                 </form>
                             

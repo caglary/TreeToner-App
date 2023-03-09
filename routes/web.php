@@ -1,12 +1,13 @@
 <?php
 
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 
 use App\Http\Controllers\MusteriController;
 use App\Http\Controllers\SiparisController;
+use App\Http\Controllers\KasadefteriController;
 use App\Http\Controllers\Auth\RegisterController;
 
 //Anasayfa
@@ -49,6 +50,14 @@ Route::put('/users/{user}',[UserController::class,'update'])->name('users.update
 Route::delete('/users/{id}',[UserController::class,'destroy'])->name('users.destroy')->middleware('auth');
 
 Route::get('/logout',[UserController::class,'logout'])->middleware('auth');
+
+
+//Kasa defteri işlemleri
+Route::get('/kasadefteri',[KasadefteriController::class,'index'])->middleware('auth')->name('kasadefteri.index');
+Route::post('/gelirgider',[KasadefteriController::class,'store'])->middleware('auth');
+Route::delete('/kayitsil/{id}',[KasadefteriController::class,'destroy'])->middleware('auth');
+
+
 
 
 

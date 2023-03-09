@@ -15,24 +15,25 @@
             </div>
 
         </div>
-
-        <div class="col-sm-6">
-            <div class="card bg-light mb-3" style="max-width: 18rem;">
-                <div class="card-header">Toplam Sipariş Tutar</div>
-                <div class="card-body">
-                    @php
-                        $toplam = 0;
-                        foreach ($siparisler as $siparis) {
-                            $toplam += $siparis->fiyat;
-                        }
-                        echo "<p class='card-text'>" . $toplam . ' TL</p>';
-                        
-                    @endphp
+        @if (isset($siparisler))
+            <div class="col-sm-6">
+                <div class="card bg-light mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Toplam Sipariş Tutar</div>
+                    <div class="card-body">
+                        @php
+                            $toplam = 0;
+                            foreach ($siparisler as $siparis) {
+                                $toplam += $siparis->fiyat;
+                            }
+                            echo "<p class='card-text'>" . $toplam . ' TL</p>';
+                            
+                        @endphp
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
     </div>
-<hr>
+    <hr>
     @if (isset($siparisler))
         <!-- /.card-header -->
         <div class="card-body">
@@ -69,7 +70,7 @@
 
                                     @csrf
                                     <button class="btn btn-sm btn-squre btn-outline-danger" type="submit"
-                                        onclick="return confirm('Siparişi silmek istediğinizden Emin misiniz?')">
+                                    onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">
                                         sil</button>
                                 </form>
                             </td>
@@ -93,5 +94,5 @@
         <a class="btn btn-secondary" href="{{ route('musteriler') }}" role="button">Geri</a>
     </div>
 
-<hr>
+    <hr>
 @endsection

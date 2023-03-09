@@ -1,11 +1,13 @@
 @extends('layouts.app')
 @section('content')
 @include('common.alert')
+
+
     <div class="row justify-content-center">
         <div class="col-md-3">
             <div class="card">
-                <div class="card-header card-title">
-                    <strong>Müşterileri İşlemleri</strong>
+                <div class="card-header card-title" style="text-align: center">
+                    <strong>Müşteri İşlemleri</strong>
                 </div>
             </div>
         </div>

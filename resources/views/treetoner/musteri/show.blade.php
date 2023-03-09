@@ -60,7 +60,7 @@
                                             <a href="{{ route('musteri_edit', $musteri['id']) }}"
                                             class="btn btn-info">Düzlet</a>
                                             <a href="{{ route('musteri_sil', $musteri['id']) }}"
-                                            class="btn btn-danger" onclick="return confirm('Müşteriyi silmek istediğinizden Emin misiniz?')">Sil</a>
+                                            class="btn btn-danger" onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">Sil</a>
                                             <a href="{{ route('musteriler') }}" class="btn btn-secondary">Geri</a>
                                         </div>
                                     </div>
