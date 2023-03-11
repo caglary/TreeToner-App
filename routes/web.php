@@ -54,6 +54,11 @@ Route::get('/logout',[UserController::class,'logout'])->middleware('auth');
 
 //Kasa defteri işlemleri
 Route::get('/kasadefteri',[KasadefteriController::class,'index'])->middleware('auth')->name('kasadefteri.index');
+Route::get('/kasadefteri_weekly',[KasadefteriController::class,'index_weekly'])->middleware('auth');
+Route::get('/kasadefteri_daily',[KasadefteriController::class,'index_daily'])->middleware('auth');
+Route::get('/kasadefteri_monthly',[KasadefteriController::class,'index_monthly'])->middleware('auth');
+Route::get('/kasadefteri_yearly',[KasadefteriController::class,'index_yearly'])->middleware('auth');
+
 Route::post('/gelirgider',[KasadefteriController::class,'store'])->middleware('auth');
 Route::delete('/kayitsil/{id}',[KasadefteriController::class,'destroy'])->middleware('auth');
 

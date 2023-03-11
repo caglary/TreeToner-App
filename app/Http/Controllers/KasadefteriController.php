@@ -2,30 +2,95 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use App\Models\Kasadefteri;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use PhpParser\Node\Stmt\Foreach_;
 
 class KasadefteriController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * //@return \Illuminate\Http\Response
      */
     public function index()
     {
+
+
         $kayitlar = DB::table('kasadefteri')
-            ->whereDate('created_at', '=', now()->format('Y-m-d'))
+            ->whereBetween('created_at', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()])
             ->orderBy('created_at', 'desc')
             ->get();
 
-        
-       
-        return view('kasadefteri.index',['kayitlar'=>$kayitlar]);
+
+        return view('kasadefteri.index', ['kayitlar' => $kayitlar, 'metin' => 'Günlük Tablo']);
+
+
     }
-    
+    public function index_weekly()
+    {
+        $kayitlar = DB::table('kasadefteri')
+            ->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+            ->orderBy('created_at', 'desc')
+            ->get();
+        foreach ($kayitlar as $kayit) {
+            $kayit->created_at = Str::substr($kayit->created_at, 0, 10);
+        }
+
+
+
+        return view('kasadefteri.all_record', ['kayitlar' => $kayitlar, 'metin' => 'Haftalık Tablo']);
+
+    }
+    public function index_daily()
+    {
+        $kayitlar = DB::table('kasadefteri')
+            ->whereBetween('created_at', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()])
+            ->orderBy('created_at', 'desc')
+            ->get();
+        foreach ($kayitlar as $kayit) {
+            $kayit->created_at = Str::substr($kayit->created_at, 0, 10);
+        }
+
+
+        return view('kasadefteri.all_record', ['kayitlar' => $kayitlar, 'metin' => 'Günlük Tablo']);
+
+    }
+    public function index_monthly()
+    {
+
+        $kayitlar = DB::table('kasadefteri')
+            ->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        foreach ($kayitlar as $kayit) {
+            $kayit->created_at = Str::substr($kayit->created_at, 0, 10);
+        }
+
+        return view('kasadefteri.all_record', ['kayitlar' => $kayitlar, 'metin' => 'Aylık Tablo']);
+
+    }
+    public function index_yearly()
+    {
+
+        $kayitlar = DB::table('kasadefteri')
+            ->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        foreach ($kayitlar as $kayit) {
+            $kayit->created_at = Str::substr($kayit->created_at, 0, 10);
+        }
+
+        return view('kasadefteri.all_record', ['kayitlar' => $kayitlar, 'metin' => 'Yıllık Tablo']);
+
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -52,22 +117,22 @@ class KasadefteriController extends Controller
 
         ], [
                 'fiyat.required' => 'Fiyat bilgisini giriniz.',
-                'aciklama.required' => 'Gelir bilgisini giriniz.'
+                'aciklama.required' => 'Gelir yada Gider eklemek için açıklama bilgisini giriniz.'
 
             ]);
 
 
         $kasadefteri = new Kasadefteri;
-        
+
         $kasadefteri->aciklama = $request->get('aciklama');
-        $kasadefteri->islem=$request->get('gelirgider');
-        if($kasadefteri->islem=='gider'){
+        $kasadefteri->islem = $request->get('gelirgider');
+        if ($kasadefteri->islem == 'gider') {
             $kasadefteri->fiyat = -$request->get('fiyat');
-        }else{
+        } else {
             $kasadefteri->fiyat = $request->get('fiyat');
 
         }
-        
+
 
 
         $kasadefteri->save();
@@ -117,10 +182,10 @@ class KasadefteriController extends Controller
      */
     public function destroy($id)
     {
-       
-            $kayit = Kasadefteri::find($id);
-            $kayit->delete();
-            return Redirect::back();
-      
+
+        $kayit = Kasadefteri::find($id);
+        $kayit->delete();
+        return Redirect::back();
+
     }
 }

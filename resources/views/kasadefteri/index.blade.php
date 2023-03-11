@@ -2,12 +2,15 @@
 @section('content')
     @include('common.alert')
 
-
-
     <div class="row justify-content-center">
-        
-       
-        
+        @if (auth::user()->id == 1)
+            <div style="padding:1%">
+                <a class="btn btn-warning" href="/kasadefteri" style="text-align:left;" role="button">Günlük İşlemler</a>
+
+                <a class="btn btn-warning" href="/kasadefteri_daily" style="text-align:left;" role="button">Tüm Kayıtlar</a>
+
+            </div>
+        @endif
         {{-- Gelir Card --}}
         <div class="col-md-4">
             <div class="card">
@@ -78,7 +81,7 @@
                                 $toplam += $kayit->fiyat;
                             }
                             
-                            echo '<h1>' . $toplam . 'TL</h1>';
+                            echo '<h1>' . $toplam . ' TL</h1>';
                         @endphp
 
 
@@ -87,69 +90,45 @@
                     </form>
                 </div>
             </div>
+
         </div>
-{{-- Tablo --}}
 
+        {{-- Tablo --}}
+        <div class="card-body" style="padding: 2%">
 
-<div class="card-body" style="padding: 2%">
-    <h6>Aşağıdaki tablo @php
-        function todayName(){
-  $days = array('Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi');
-  $GunNum = date('w'); // Get today's number (0 for Sunday, 1 for Monday, etc.)
-  $GunIsmi = $days[$GunNum]; // Get today's name from the array
- 
-  echo   $GunIsmi; // Output the date and name
-}
-todayName();
-    @endphp günü içerisindeki yapılan kayıt bilgilerini içerir.</h6>
-    <table id="example1" class="table table-bordered table-striped">
-        <thead>
-            <tr>
-               
-                <th>Açıklama</th>
-                <th>Fiyat</th>
-                <th></th>
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
 
+                        <th>Açıklama</th>
+                        <th>Fiyat</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($kayitlar as $kayit)
+                        <tr>
 
+                            <th>{{ $kayit->aciklama }}</th>
+                            @if ($kayit->islem == 'gelir')
+                                <th style="background-color: rgb(136, 180, 136);color:white;">+ {{ $kayit->fiyat }}</th>
+                            @else
+                                <th>{{ $kayit->fiyat }}</th>
+                            @endif
+                            <th>
+                                <form action="/kayitsil/{{ $kayit->id }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-sm btn-squre btn-outline-danger" type="submit"
+                                        onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">Kaydı
+                                        Sil</button>
 
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($kayitlar as $kayit)
-                <tr>
-                    
-                    <th>{{ $kayit->aciklama }}</th>
-                    @if ($kayit->islem == 'gelir')
-                        <th style="background-color: rgb(136, 180, 136);color:white;">+ {{ $kayit->fiyat }}</th>
-                    @else
-                        <th >{{ $kayit->fiyat }}</th>
-                    @endif
-                    <th>
-                        <form action="/kayitsil/{{$kayit->id}}" method="post">
-                            @csrf
-                            @method('delete')
-                        <button class="btn btn-sm btn-squre btn-outline-danger" type="submit" onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">Kaydı Sil</button>
-                       
-                        </form>
-                    </th>
-                </tr>
-            @endforeach
-
-
-        </tbody>
-        {{-- <tfoot>
-        <tr>
-            <th>Kurum Adı</th>
-            <th>İsim Soyisim</th>
-            <th>Cep Telefonu(s)</th>
-            <th>İş Telefonu</th>
-            <th>İşlemler</th>
-
-        </tr>
-    </tfoot> --}}
-    </table>
-</div>
-
-        
+                                </form>
+                            </th>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection

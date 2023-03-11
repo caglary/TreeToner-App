@@ -52,23 +52,13 @@
                                 class="btn btn-sm btn-squre btn-outline-info" title="Show"><i
                                     class="fa fa">Müşteri Detay</i></a>
                             <a href="{{ route('siparis.index', ['musteri_id' => $musteri->id]) }}"
-                                class="btn btn-sm btn-squre btn-outline-danger" title="Show"><i
-                                    class="fa fa-edit">siparişler</i></a>
+                                class="btn btn-sm btn-outline-danger" title="Show"><i
+                                    class="fa fa-edit">Siparişler</i></a>
                         </td>
                     </tr>
                 @endforeach
 
             </tbody>
-            {{-- <tfoot>
-                <tr>
-                    <th>Kurum Adı</th>
-                    <th>İsim Soyisim</th>
-                    <th>Cep Telefonu(s)</th>
-                    <th>İş Telefonu</th>
-                    <th>İşlemler</th>
-
-                </tr>
-            </tfoot> --}}
         </table>
     </div>
     <!-- /.card-body -->
