@@ -30,7 +30,7 @@ Route::post('/siparisler/{musteri_id}', [SiparisController::class, 'store'])->na
 Route::get('/siparis_show/{siparis_id}/{musteri_id}', [SiparisController::class, 'show'])->name('siparis_show');
 Route::post('/siparisler/{siparis_id}/{musteri_id}', [SiparisController::class, 'update'])->name('siparis_update');
 Route::post('/siparis_delete/{siparis_id}/{musteri_id}',[SiparisController::class,'destroy'])->name('siparis.sil');
-
+Route::get('/siparis_show/{siparis_id}',[SiparisController::class,'siparis_goster'])->name('siparis.goster');
 Auth::routes([
     
 ]);

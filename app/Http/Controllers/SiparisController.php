@@ -120,5 +120,12 @@ class SiparisController extends Controller
         return redirect()->route('siparis.index', ['musteri_id' => $musteri_id]);
         
     }
+    public function siparis_goster($siparis_id){
+        $siparis = Siparis::find($siparis_id);
+        return view('treetoner.siparisler.siparis_goster',['siparis'=>$siparis]);
+        
+
+
+    }
 
 }

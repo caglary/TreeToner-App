@@ -26,7 +26,7 @@
                                 $toplam += $siparis->fiyat;
                             }
                             echo "<p class='card-text'>" . $toplam . ' TL</p>';
-                            
+
                         @endphp
                     </div>
                 </div>
@@ -63,7 +63,7 @@
 
                                 <form method="POST"
                                     action="{{ route('siparis.sil', ['siparis_id' => $siparis->id, 'musteri_id' => $siparis->musteri_id]) }}">
-                                    <a href="/siparis_show/{{ $siparis->id }}">Göster</a>
+                                    <a href="/siparis_show/{{ $siparis->id }}" class="btn btn-outline-info btn-sm">Göster</a>
                                     <a href="{{ route('siparis_show', ['siparis_id' => $siparis->id, 'musteri_id' => $siparis->musteri_id]) }}"
                                         class="btn btn-sm btn-squre btn-outline-success" title="Show">Güncelle</a>
 
