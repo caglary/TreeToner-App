@@ -18,14 +18,14 @@
         @if (isset($siparisler))
             <div class="col-sm-6">
                 <div class="card bg-light mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Toplam Sipariş Tutar</div>
+                    <div class="card-header">Müşteriye Ait Toplam Sipariş Tutarı</div>
                     <div class="card-body">
                         @php
                             $toplam = 0;
                             foreach ($siparisler as $siparis) {
                                 $toplam += $siparis->fiyat;
                             }
-                            echo "<p class='card-text'>" . $toplam . ' TL</p>';
+                            echo "<p class='card-text' style='text-align: center;'>" . $toplam . ' TL</p>';
 
                         @endphp
                     </div>
