@@ -49,11 +49,9 @@
 
                         <td width="250">
                             <a href="{{ route('musteri_show', $musteri->id) }}"
-                                class="btn btn-sm btn-squre btn-outline-info" title="Show"><i
-                                    class="fa fa">Müşteri Detay</i></a>
+                                class="btn btn-sm btn-squre btn-outline-success" title="Show">Müşteri Detay</a>
                             <a href="{{ route('siparis.index', ['musteri_id' => $musteri->id]) }}"
-                                class="btn btn-sm btn-outline-danger" title="Show"><i
-                                    class="fa fa-edit">Siparişler</i></a>
+                                class="btn btn-sm btn-outline-danger" title="Show">Siparişler</a>
                         </td>
                     </tr>
                 @endforeach

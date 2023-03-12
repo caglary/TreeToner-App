@@ -63,14 +63,13 @@
 
                                 <form method="POST"
                                     action="{{ route('siparis.sil', ['siparis_id' => $siparis->id, 'musteri_id' => $siparis->musteri_id]) }}">
-
+                                    <a href="/siparis_show/{{ $siparis->id }}">Göster</a>
                                     <a href="{{ route('siparis_show', ['siparis_id' => $siparis->id, 'musteri_id' => $siparis->musteri_id]) }}"
-                                        class="btn btn-sm btn-squre btn-outline-info" title="Show"><i
-                                            class="fa fa-edit">Güncelle</i></a>
+                                        class="btn btn-sm btn-squre btn-outline-success" title="Show">Güncelle</a>
 
                                     @csrf
                                     <button class="btn btn-sm btn-squre btn-outline-danger" type="submit"
-                                    onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">
+                                        onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">
                                         sil</button>
                                 </form>
                             </td>

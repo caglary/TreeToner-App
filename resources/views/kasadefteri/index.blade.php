@@ -3,11 +3,18 @@
     @include('common.alert')
 
     <div class="row justify-content-center">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header card-title" style="text-align: center">
+                    <strong>Kasa Defteri</strong>
+                </div>
+            </div>
+        </div>
         @if (auth::user()->id == 1)
-            <div style="padding:1%">
-                <a class="btn btn-warning" href="/kasadefteri" style="text-align:left;" role="button">Günlük İşlemler</a>
+            <div style="margin:3%">
+                <a class="btn btn-outline-success" href="/kasadefteri" style="text-align:left;" role="button">Günlük İşlemler</a>
 
-                <a class="btn btn-warning" href="/kasadefteri_daily" style="text-align:left;" role="button">Tüm Kayıtlar</a>
+                <a class="btn btn-outline-success" href="/kasadefteri_daily" style="text-align:left;" role="button">Tüm Kayıtlar</a>
 
             </div>
         @endif
