@@ -27,6 +27,7 @@ return new class extends Migration
             $table->decimal('fiyat', $precision = 8, $scale = 2)->default(0);
             $table->timestamps();
             $table->foreignId('musteri_id')->references('id')->on('musteries');
+            $table->enum('tahsilat',['money_paid','money_wait','money_return']);
         });
     }
 

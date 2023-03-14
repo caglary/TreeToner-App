@@ -62,6 +62,12 @@ Route::get('/kasadefteri_yearly',[KasadefteriController::class,'index_yearly'])-
 Route::post('/gelirgider',[KasadefteriController::class,'store'])->middleware('auth');
 Route::delete('/kayitsil/{id}',[KasadefteriController::class,'destroy'])->middleware('auth');
 
+//Tahsilatlar
+Route::get('/tahsilatlar',[SiparisController::class,'tahsilatlar']);
+Route::post('/tahsilatlar/money_paid/{id}',[SiparisController::class,'tahsilat_money_paid']);
+Route::post('/tahsilatlar/money_return/{id}',[SiparisController::class,'tahsilat_money_return']);
+
+
 
 
 

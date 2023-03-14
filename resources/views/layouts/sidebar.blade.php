@@ -43,6 +43,15 @@
                     </li>
                 @endif
                 <li class="nav-item">
+                    <a href="/tahsilatlar" class="nav-link">
+                        {{-- <i class="nav-icon fas fa-th"></i> --}}
+                        <p>
+                            Alacak Defteri
+
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="/kasadefteri" class="nav-link">
                         {{-- <i class="nav-icon fas fa-th"></i> --}}
                         <p>
@@ -51,6 +60,7 @@
                         </p>
                     </a>
                 </li>
+               
               
             </ul>
         </nav>

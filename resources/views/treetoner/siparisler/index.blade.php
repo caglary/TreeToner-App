@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+
+ @include('common.alert')
+     
     <div class="row justify-content-left">
         <div class="col-md-6">
             <div class="card bg-light mb-3" style="max-width: 30rem;">
