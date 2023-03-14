@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+
 use App\Models\Musteri;
 use App\Models\Siparis;
 use Illuminate\Http\Request;
@@ -44,7 +45,7 @@ class SiparisController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'fiyat' => 'required|integer',
+            'fiyat' => 'required',
             'yazici_model' => 'required',
 
         ], [
@@ -74,9 +75,8 @@ class SiparisController extends Controller
         $siparis->sonuc = $request->get('sonuc');
         $siparis->fiyat = $request->get('fiyat');
         $siparis->musteri_id = $request->get('musteri_id');
-
-
         $siparis->save();
+
 
         return redirect()->route('siparis.index', ['musteri_id' => $siparis->musteri_id]);
     }

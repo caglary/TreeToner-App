@@ -112,7 +112,7 @@ class KasadefteriController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'fiyat' => 'required|integer',
+            'fiyat' => 'required',
             'aciklama' => 'required',
 
         ], [

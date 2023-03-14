@@ -35,15 +35,17 @@
                 }
                 
                 echo '<h3 style="text-align: center;margin:1%;">' . $metin . ' ( ' . $toplam . ' TL )</h3>';
-                    if($toplam<0){
-                        echo '<h6 style="text-align: center;">Zarardasın! Allah yardımcın olsun Patron. :)</h6>';
-                    }
-                    if($toplam==0){
-                        echo '<h6 style="text-align: center;">Tebrikler! En azından zararda değilsin Patron.</h6>';
-                    }
-                    if($toplam>0){
-                        echo '<h6 style="text-align: center;">Helal olsun Patron!</h6>';
-                    }
+                
+                    //Fiyatın eksi yada artı olmasına göre mesaj vermek için yazılmıştı
+                    // if($toplam<0){
+                    //     echo '<h6 style="text-align: center;">Zarardasın! Allah yardımcın olsun Patron. :)</h6>';
+                    // }
+                    // if($toplam==0){
+                    //     echo '<h6 style="text-align: center;">Tebrikler! En azından zararda değilsin Patron.</h6>';
+                    // }
+                    // if($toplam>0){
+                    //     echo '<h6 style="text-align: center;">Helal olsun Patron!</h6>';
+                    // }
             @endphp
 
         </div>

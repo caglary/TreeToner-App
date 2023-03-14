@@ -34,7 +34,7 @@
                         </div>
                         <div class="input-group col-md-13 mb-3">
                             <span class="input-group-text">Fiyat</span>
-                            <input type="text" name="fiyat" value="{{ old('fiyat') }}" class="form-control">
+                            <input type="number" name="fiyat" Step=".01" value="{{ old('fiyat') }}" class="form-control">
                             <input hidden name="gelirgider" value="gelir">
                         </div>
                         <div style="text-align: center">

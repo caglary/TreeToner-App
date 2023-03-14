@@ -89,11 +89,11 @@
                                         </fieldset>
                                         <div class="input-group col-md-3" style="margin: 5px">
                                             <span class="input-group-text">Fiyat</span>
-                                            <input type="text" name="fiyat" class="form-control"
+                                            <input type="number" name="fiyat" Step=".01" class="form-control"
                                                 value="{{ $siparis->fiyat }}" required>
 
                                         </div>
-                                        <div><input type="hidden" name="musteri_id" value={{ $musteri_id }}></div>
+                                        <div><input type="hidden" name="musteri_id" value="{{ $musteri_id }}"></div>
                                         <div class="col-12" style="margin: 5px">
                                             <button class="btn btn-primary" type="submit">Güncelle</button>
 
