@@ -9,7 +9,7 @@ use App\Models\Musteri;
 use App\Models\Siparis;
 use Illuminate\Http\Request;
 
-use Illuminate\Support\facades\DB;
+use Illuminate\Support\Facades\DB;
 
 
 class MusteriController extends Controller

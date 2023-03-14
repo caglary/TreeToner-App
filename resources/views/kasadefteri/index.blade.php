@@ -38,7 +38,7 @@
                             <input hidden name="gelirgider" value="gelir">
                         </div>
                         <div style="text-align: center">
-                            <button type="submit" class="btn btn-success">Gelir Ekle</button>
+                            <button type="submit" class="btn btn-sm btn-success">Gelir Ekle</button>
                         </div>
 
                     </form>
@@ -67,7 +67,7 @@
 
                         </div>
                         <div style="text-align: center">
-                            <button style="text-align:center;" type="submit" class="btn btn-danger">Gider Ekle</button>
+                            <button style="text-align:center;" type="submit" class="btn btn-sm btn-danger">Gider Ekle</button>
                         </div>
                     </form>
                 </div>

@@ -16,38 +16,38 @@
 
 
                                     <div class="form-group">
-                                        <label class="col-lg-3 control-label">Kullanıcı Adı:</label>
+                                        <label class="col-lg-8 control-label">Kullanıcı Adı:</label>
                                         <div class="col-lg-8">
                                             <input class="form-control" name="name" type="text" required">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-3 control-label">E-mail:</label>
+                                        <label class="col-lg-8 control-label">E-mail:</label>
                                         <div class="col-lg-8">
                                             <input class="form-control" name="email" type="email" required">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label"> Parola:</label>
+                                        <label class="col-md-8 control-label"> Parola:</label>
                                         <div class="col-md-8">
                                             <input class="form-control" type="password" name="password">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label"> Parola Tekrar:</label>
+                                        <label class="col-md-8 control-label"> Parola Tekrar:</label>
                                         <div class="col-md-8">
                                             <input class="form-control" type="password" name="confirm_password">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label"></label>
+                                        <label class="col-md-8 control-label"></label>
                                         <div class="col-md-8">
 
                                             <input type="submit" class="btn btn-success btn-sm" value="Kaydet">
                                             <span></span>
-                                            <a href="/users" class="btn btn-sm btn-squre btn-outline-info"
-                                                title="iptal"><i class="fa fa-edit">Geri</i></a>
+                                            <a href="/users" class="btn btn-sm btn-secondary"
+                                                title="iptal">Geri</a>
 
                                         </div>
                                     </div>

@@ -36,9 +36,9 @@
                                 <form action="/users/{{$user->id}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <a href="/users/{{$user->id}}/edit" class="btn btn-sm btn-squre btn-outline-info"
-                                    title="Show"><i class="fa fa">Güncelle</i></a>
-                                    <input type="submit"  class="btn btn-sm btn-squre btn-outline-danger" onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')" value="Sil">
+                                <a href="/users/{{$user->id}}/edit" class="btn btn-sm btn-success"
+                                    title="Show">Güncelle</a>
+                                    <input type="submit"  class="btn btn-sm  btn-danger" onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')" value="Sil">
                                     
                                 </form>
                             

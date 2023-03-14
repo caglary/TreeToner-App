@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <div style="padding: 5%"> <a href="{{ route('login') }}">
-                            <img src="/img/treetonerlogosmall.png" alt="Treetoner Logo" class="rounded mx-auto d-block">
+                            <img src="/img/treetonerlogosmall.jpeg" alt="Treetoner Logo" class="rounded mx-auto d-block" style=" width: 80%; height: 80%; ">
                         </a></div>
                 </div>
 
@@ -21,7 +21,7 @@
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="caglar.yurdakul60@gmail.com" >
+                                    name="email" >
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                             <div class="col-md-6">
                                 <input id="password" type="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
-                                    value="password" autocomplete="current-password">
+                                     autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">

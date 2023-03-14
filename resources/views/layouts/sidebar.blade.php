@@ -7,7 +7,7 @@
         <!-- Sidebar user panel (optional) -->
         <div>
             <div><br>
-                <img src="/img/treetonerlogosmall.png" 
+                <img src="/img/treetonerlogosmall.jpeg" 
                     style=" ;width: 80%; height: 80%; ">
             </div>
 

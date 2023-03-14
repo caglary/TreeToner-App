@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Musteri;
 use App\Models\Siparis;
 use Illuminate\Http\Request;
-use Illuminate\Support\facades\DB;
+use Illuminate\Support\Facades\DB;
 
 
 class SiparisController extends Controller
@@ -109,7 +109,7 @@ class SiparisController extends Controller
         }
         $siparis->save();
 
-        return redirect()->route('siparis_index', ['musteri_id' => $siparis->musteri_id]);
+        return redirect()->route('siparis.index', ['musteri_id' => $siparis->musteri_id]);
     }
     public function destroy($siparis_id, $musteri_id)
     {
