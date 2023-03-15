@@ -3,12 +3,11 @@
 
 
     <!-- Sidebar -->
-    <div class="sidebar sidebar-collapse " >
+    <div class="sidebar sidebar-collapse ">
         <!-- Sidebar user panel (optional) -->
         <div>
             <div><br>
-                <img src="/img/treetonerlogosmall.jpeg" 
-                    style=" ;width: 100%; height: 80%; ">
+                <img src="/img/treetonerlogosmall.jpeg" style=" ;width: 100%; height: 80%; ">
             </div>
 
         </div><br>
@@ -22,10 +21,17 @@
 
 
                 </li>
+                <div style="text-align: center;color:azure; font-family: Times New Roman, Times, serif;">
+                    @include('common.doviz_kur')
+                    <hr>
+                </div>
+               
                 <li class="nav-item">
                     <a href="/" class="nav-link">
                         {{-- <i class="nav-icon fas fa-th"></i> --}}
                         <p>
+
+                           
                             Müşteri İşlemleri
 
                         </p>
@@ -54,14 +60,15 @@
                 <li class="nav-item">
                     <a href="/kasadefteri" class="nav-link">
                         {{-- <i class="nav-icon fas fa-th"></i> --}}
-                        <p>
-                            Kasa Defteri
+
+                        Kasa Defteri
 
                         </p>
                     </a>
                 </li>
-               
-              
+
+
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -6,9 +6,10 @@
         <ul class="navbar-nav">
             <li class="nav-item">
                 <h6> {{showTodayName()}}&nbsp &nbsp&nbsp &nbspHoşgeldin, <strong>{{ Auth()->user()->name }}! </strong></h6>
-                <h6></h6>
+            
             </li>
-
+        
+            
         </ul>
 
         <!-- Right navbar links -->
