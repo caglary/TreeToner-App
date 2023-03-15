@@ -1,11 +1,30 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="row justify-content-left">
+    <div class="row justify-content-center">
 
-        <div class="col-md-6">
+        <div class="col-md-6" style="text-align: center">
             <div class="card bg-light mb-3" style="max-width: 30rem;">
                 <div class="card-header">Alacak Defteri</div>
+                @if (isset($siparisler))
+                <div class="card-body">
+                    <h6>
+                        @php
+                        $toplam=0;
+                            foreach ($siparisler as $siparis) {
+                                $toplam+=$siparis->fiyat;
+                            }
+                            if ($toplam==0) {
+                                echo "Herhangi bir alacak yoktur.";
+                            }
+                            else{
+                                echo "Toplam alacak miktarı ".$toplam." TL";
+
+                            }
+                        @endphp
+                    </h6>
+                </div>
+                @endif
             </div>
         </div>
 
