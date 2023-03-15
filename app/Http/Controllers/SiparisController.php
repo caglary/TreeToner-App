@@ -162,9 +162,9 @@ class SiparisController extends Controller
 
         return view('treetoner.tahsilatlar.index', ['siparisler' => $siparisler]);
     }
-    public function tahsilat($from,$odeme_sekli, $siparis_id, $odeme_durumu)
+    public function tahsilat($from, $odeme_sekli, $siparis_id, $odeme_durumu)
     {
-    
+
         //odeme_sekli değişkeni ne ile ödendiğini belirtir.Kasadefteri veritabanına
         //ödeme sekli kolonuna kayıt yapılır.
 
@@ -190,18 +190,29 @@ class SiparisController extends Controller
             $kasadefteri_kayit->fiyat = $siparis->fiyat;
             $kasadefteri_kayit->odeme_sekli = $odeme_sekli;
             //from nereden kayıt yapıldığını belirtir.
-            $kasadefteri_kayit->from=$from;
+            $kasadefteri_kayit->from = $from;
             $kasadefteri_kayit->save();
         }
 
         $siparisler = Siparis::where('tahsilat', '!=', 'money_paid')
-        ->where('tahsilat', '!=', 'money_return')
-        ->get();
+            ->where('tahsilat', '!=', 'money_return')
+            ->get();
         return view('treetoner.tahsilatlar.index', ['siparisler' => $siparisler]);
 
 
     }
-   
+    public function odeme_sekli_degistir($id, Request $request)
+    {
+
+
+        //kasadefterinde odeme_sekli kolonunda değişikliği belirtir.
+
+        $kayit = Kasadefteri::find($id);
+        $kayit->odeme_sekli=$request->get('odeme_sekli');
+        $kayit->save();
+        return redirect()->back();
+    }
+
 
 
 }

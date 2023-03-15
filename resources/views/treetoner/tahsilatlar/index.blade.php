@@ -37,21 +37,21 @@
 
                                 <td>{{ $siparis->fiyat }}</td>
                                 <td style="text-align: center">
-                                    <form method="POST"action="/tahsilatlar/siparis/card/{{ $siparis->id }}/money_paid">
+                                    <form method="POST"action="/tahsilatlar/siparis/Kart/{{ $siparis->id }}/money_paid">
                                         @csrf
                                         <button style="margin: 2%;width:100%;" class="btn btn-sm btn-squre btn-warning" type="submit"
                                             onclick="return confirm('Ödemesi Yapıldı mı? Evet-(OK) Hayır-(Cancel)')">
                                             Kart</button>
                                     </form>
                                
-                                    <form method="POST"action="/tahsilatlar/siparis/nakit/{{ $siparis->id }}/money_paid">
+                                    <form method="POST"action="/tahsilatlar/siparis/Nakit/{{ $siparis->id }}/money_paid">
                                         @csrf
                                         <button style="margin: 2%;width:100%;" class="btn btn-sm btn-squre btn-success" type="submit"
                                             onclick="return confirm('Ödemesi Yapıldı mı? Evet-(OK) Hayır-(Cancel)')">
                                             Nakit</button>
                                     </form>
                               
-                                    <form method="POST"action="/tahsilatlar/siparis/eft/{{ $siparis->id }}/money_paid">
+                                    <form method="POST"action="/tahsilatlar/siparis/Eft/{{ $siparis->id }}/money_paid">
                                         @csrf
                                         <button style="margin: 2%;width:100%;" class="btn btn-sm btn-squre btn-info" type="submit"
                                             onclick="return confirm('Ödemesi Yapıldı mı? Evet-(OK) Hayır-(Cancel)')">

@@ -66,6 +66,11 @@ Route::delete('/kayitsil/{id}',[KasadefteriController::class,'destroy'])->middle
 Route::get('/tahsilatlar',[SiparisController::class,'tahsilatlar']);
 Route::post('/tahsilatlar/{siparis}/{odeme}/{id}/{odeme_durumu}',[SiparisController::class,'tahsilat']);
 
+//Ödeme şeklini değiştirmek için (kart-eft-nakit)
+Route::post('/odeme_sekli_degistir/{id}',[SiparisController::class,'odeme_sekli_degistir']);
+
+
+
 
 
 

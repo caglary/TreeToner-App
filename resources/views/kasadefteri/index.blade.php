@@ -34,11 +34,11 @@
 
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Açıklama</label>
-                            <textarea class="form-control" name="aciklama" rows="3"></textarea>
+                            <textarea class="form-control" name="aciklama" rows="3">{{ old('aciklama') }}</textarea>
                         </div>
                         <div class="input-group col-md-13 mb-3">
-                            <span class="input-group-text" >Fiyat</span>
-                            <input type="number" name="fiyat" Step=".01" 
+                            <span class="input-group-text">Fiyat</span>
+                            <input type="number" name="fiyat" Step=".01" value="{{ old('fiyat') }}"
                                 class="form-control">
                             <input hidden name="gelirgider" value="gelir">
                         </div>
@@ -66,10 +66,10 @@
                                 </label>
                             </div>
                         </div>
-                          <div style="text-align: center" >
+                        <div style="text-align: center">
                             <input type="submit" value="Gelir Ekle" class="btn btn-sm btn-success">
 
-                          </div>
+                        </div>
 
 
                     </form>
@@ -91,11 +91,12 @@
 
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Açıklama</label>
-                            <textarea class="form-control" name="aciklama" rows="3"></textarea>
+                            <textarea class="form-control" name="aciklama" rows="3">{{ old('aciklama') }}</textarea>
                         </div>
                         <div class="input-group col-md-13 mb-3">
                             <span class="input-group-text">Fiyat</span>
-                            <input type="number" Step=".01" name="fiyat" class="form-control">
+                            <input type="number" Step=".01" value="{{ old('fiyat') }}" name="fiyat"
+                                class="form-control">
                             <input hidden name="gelirgider" value="gider">
 
                         </div>
@@ -124,11 +125,11 @@
                                 </label>
                             </div>
                         </div>
-                          <div style="text-align: center" >
+                        <div style="text-align: center">
                             <input type="submit" value="Gider Ekle" class="btn btn-sm btn-danger">
 
-                          </div>
-                       
+                        </div>
+
 
 
 
@@ -187,12 +188,82 @@
                                 <th>{{ $kayit->fiyat }}</th>
                             @endif
                             <th>
-                            @if ($kayit->odeme_sekli=="card")
-                                Kart
-                            @else
-                            {{$kayit->odeme_sekli}}
-                            @endif    
-                            
+
+
+                                <form method="POST" action="/odeme_sekli_degistir/{{$kayit->id}}">
+                                    @csrf
+                                    <div class="dropup">
+                                        <button class="dropbtn">{{ $kayit->odeme_sekli }}</button>
+                                        <div class="dropup-content">
+                                            <button class="btn btn-sm btn-outline-warning" name="odeme_sekli" value="Kart" type="submit">Kart</button>
+                                            <button class="btn btn-sm btn-outline-warning" name="odeme_sekli" value="Eft" type="submit">Eft</button>
+                                            <button class="btn btn-sm btn-outline-warning" name="odeme_sekli" value="Nakit" type="submit">Nakit</button>
+
+                                        </div>
+                                    </div>
+                                </form>
+
+                                {{-- Css Kodları --}}
+                                <style>
+                                    /* Dropup Button */
+                                    .dropbtn {
+                                        background-color: #094c73;
+                                        color: white;
+                                        padding: 5px;
+                                        font-size: 12px;
+                                        border: 1px solid red;
+                                        border-radius: 5px;
+
+                                    }
+
+                                    /* The container <div> - needed to position the dropup content */
+                                    .dropup {
+                                        position: relative;
+                                        left: 20px;
+                                        top: 1px;
+
+                                        display: inline-block;
+                                    }
+
+                                    /* Dropup content (Hidden by Default) */
+                                    .dropup-content {
+                                        display: none;
+                                        position: absolute;
+                                        bottom: 10px;
+                                        background-color: #f1f1f1;
+                                        min-width: 80px;
+                                        box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.2);
+                                        z-index: 1;
+                                    }
+
+                                    /* Links inside the dropup */
+                                    .dropup-content button {
+                                        color: #094c73;
+                                        padding: 3px;
+                                        text-decoration: none;
+                                        display: inline-block;
+
+                                        border-radius: 5px;
+                                        width: 80px;
+                                    }
+
+                                    /* Change color of dropup links on hover */
+                                    .dropup-content button:hover {
+                                        background-color: #ddd
+                                    }
+
+                                    /* Show the dropup menu on hover */
+                                    .dropup:hover .dropup-content {
+                                        display: block;
+                                    }
+
+                                    /* Change the background color of the dropup button when the dropup content is shown */
+                                    .dropup:hover .dropbtn {
+                                        background-color: #2980B9;
+                                    }
+                                </style>
+
+
                             </th>
 
                             <th>

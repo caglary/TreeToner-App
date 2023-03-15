@@ -16,7 +16,7 @@ return new class extends Migration
         
 
         Schema::table('kasadefteri',function($table){
-            $table->enum('odeme_sekli',['card','nakit','eft']);
+            $table->enum('odeme_sekli',['Kart','Nakit','Eft']);
             
         });
     
