@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('content')
+    @include('common.alert')
 
- @include('common.alert')
-     
     <div class="row justify-content-left">
         <div class="col-md-6">
             <div class="card bg-light mb-3" style="max-width: 30rem;">
@@ -26,10 +25,13 @@
                         @php
                             $toplam = 0;
                             foreach ($siparisler as $siparis) {
+                                if ($siparis->tahsilat == 'money_return') {
+                                    continue;
+                                }
                                 $toplam += $siparis->fiyat;
                             }
                             echo "<p class='card-text' style='text-align: center;'>" . $toplam . ' TL</p>';
-
+                            
                         @endphp
                     </div>
                 </div>
@@ -43,11 +45,12 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>yazici_model</th>
-                        <th>yazici_seri_no</th>
-                        <th>ariza</th>
-                        <th>fiyat</th>
-                        <th>İşlemler</th>
+                        <td></td>
+                        <th>Model</th>
+                        <th>Seri No</th>
+                        <th>Arıza</th>
+                        <th>Fiyat</th>
+                        <th></th>
 
                     </tr>
                 </thead>
@@ -56,6 +59,21 @@
                     @foreach ($siparisler as $siparis)
                         <tr>
 
+                            @if ($siparis->tahsilat == 'money_return')
+                                <td style="background-color: rgb(89, 62, 4);color:rgb(238, 75, 75);">
+                                    <h6>İade</h6>
+                                </td>
+                            @else
+                                @if ($siparis->tahsilat == 'money_paid')
+                                    <td style="background-color: rgb(74, 99, 74);color:rgb(236, 231, 231);">
+                                        <h6>Ödendi</h6>
+                                    </td>
+                                @elseif($siparis->tahsilat == 'money_wait')
+                                    <td style="background-color: rgb(158, 158, 118);color:rgb(230, 242, 11);">
+                                        <h6>Ödenecek</h6>
+                                    </td>
+                                @endif
+                            @endif
                             <td>{{ $siparis->yazici_model }}</td>
                             <td>{{ $siparis->yazici_seri_no }}</td>
 
@@ -63,17 +81,22 @@
 
                             <td>{{ $siparis->fiyat }}</td>
                             <td>
-
                                 <form method="POST"
                                     action="{{ route('siparis.sil', ['siparis_id' => $siparis->id, 'musteri_id' => $siparis->musteri_id]) }}">
-                                    <a href="/siparis_show/{{ $siparis->id }}" class="btn btn-outline-info btn-sm">Göster</a>
-                                    <a href="{{ route('siparis_show', ['siparis_id' => $siparis->id, 'musteri_id' => $siparis->musteri_id]) }}"
-                                        class="btn btn-sm btn-squre btn-outline-success" title="Show">Güncelle</a>
+                                    <a href="/siparis_show/{{ $siparis->id }}"
+                                        class="btn btn-outline-info btn-sm">Göster</a>
+                                {{-- kasa defterine işli kayıtlarda güncelleme ve silme işlemi yapılamıyor. --}}
 
-                                    @csrf
-                                    <button class="btn btn-sm btn-squre btn-outline-danger" type="submit"
-                                        onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">
-                                        sil</button>
+                                    @if ($siparis->tahsilat != 'money_paid')
+                                        <a href="{{ route('siparis_show', ['siparis_id' => $siparis->id, 'musteri_id' => $siparis->musteri_id]) }}"
+                                            class="btn btn-sm btn-squre btn-outline-success" title="Show">Güncelle</a>
+
+                                        @csrf
+                                        <button class="btn btn-sm btn-squre btn-outline-danger" type="submit"
+                                            onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">
+                                            sil</button>
+                                    @endif
+
                                 </form>
                             </td>
 

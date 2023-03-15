@@ -67,16 +67,20 @@
                                 <hr>
                                 <div class="form-group row">
                                     <div class="col-md-4">
+                                        {{-- kasa defterine işli kayıtlarda güncelleme ve silme işlemi yapılamıyor. --}}
 
-                                        <a href="{{ route('siparis_show', ['siparis_id' => $siparis->id, 'musteri_id' => $siparis->musteri_id]) }}"
-                                            class="btn btn-sm btn-squre btn-primary" title="Show">Güncelle</a>
+                                        @if ($siparis->tahsilat != 'money_paid')
+                                            <a href="{{ route('siparis_show', ['siparis_id' => $siparis->id, 'musteri_id' => $siparis->musteri_id]) }}"
+                                                class="btn btn-sm btn-squre btn-primary" title="Show">Güncelle</a>
+                                        @endif
+
                                         <a class="btn btn-secondary btn-sm"
-                                        href="{{ route('siparis.index', ['musteri_id' => $siparis['musteri_id']]) }}"
-                                        role="button">Geri</a>
-                                  
-                                      
+                                            href="{{ route('siparis.index', ['musteri_id' => $siparis['musteri_id']]) }}"
+                                            role="button">Geri</a>
+
+
                                     </div>
-                                   
+
 
                                 </div>
 

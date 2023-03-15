@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-   
+
     <div class="row justify-content-left">
 
         <div class="col-md-6">
@@ -16,11 +16,12 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>yazici_model</th>
-                            <th>yazici_seri_no</th>
+                            <th>İsim</th>
+                            <th>Yazıcı Model</th>
                             <th>ariza</th>
                             <th>fiyat</th>
-                            <th>İşlemler</th>
+                            <th>Ödeme Durumu</th>
+                            
 
                         </tr>
                     </thead>
@@ -29,24 +30,37 @@
                         @foreach ($siparisler as $siparis)
                             <tr>
 
+                                <td>{{ $siparis->adi_soyadi }}</td>
                                 <td>{{ $siparis->yazici_model }}</td>
-                                <td>{{ $siparis->yazici_seri_no }}</td>
 
                                 <td>{{ $siparis->ariza }}</td>
 
                                 <td>{{ $siparis->fiyat }}</td>
-
-                                <td>
-
-                                    <form method="POST"action="/tahsilatlar/money_paid/{{ $siparis->id }}">
+                                <td style="text-align: center">
+                                    <form method="POST"action="/tahsilatlar/siparis/card/{{ $siparis->id }}/money_paid">
                                         @csrf
-                                        <button class="btn btn-sm btn-squre btn-success" type="submit"
+                                        <button style="margin: 2%;width:100%;" class="btn btn-sm btn-squre btn-warning" type="submit"
                                             onclick="return confirm('Ödemesi Yapıldı mı? Evet-(OK) Hayır-(Cancel)')">
-                                            Ödendi</button>
+                                            Kart</button>
                                     </form>
-                                    <form method="POST"action="/tahsilatlar/money_return/{{ $siparis->id }}">
+                               
+                                    <form method="POST"action="/tahsilatlar/siparis/nakit/{{ $siparis->id }}/money_paid">
                                         @csrf
-                                        <button class="btn btn-sm btn-squre btn-danger" type="submit"
+                                        <button style="margin: 2%;width:100%;" class="btn btn-sm btn-squre btn-success" type="submit"
+                                            onclick="return confirm('Ödemesi Yapıldı mı? Evet-(OK) Hayır-(Cancel)')">
+                                            Nakit</button>
+                                    </form>
+                              
+                                    <form method="POST"action="/tahsilatlar/siparis/eft/{{ $siparis->id }}/money_paid">
+                                        @csrf
+                                        <button style="margin: 2%;width:100%;" class="btn btn-sm btn-squre btn-info" type="submit"
+                                            onclick="return confirm('Ödemesi Yapıldı mı? Evet-(OK) Hayır-(Cancel)')">
+                                            EFT</button>
+                                    </form>
+                               
+                                    <form method="POST"action="/tahsilatlar/siparis/money_return/{{ $siparis->id }}/money_return">
+                                        @csrf
+                                        <button style="margin: 2%;width:100%;" class="btn btn-sm btn-squre btn-danger" type="submit"
                                             onclick="return confirm('İade mi edildi? Evet-(OK) Hayır-(Cancel)')">
                                             İade</button>
                                     </form>
@@ -64,11 +78,5 @@
 
                 </div>
         @endif
-        {{-- <div>
-            <a href="{{ route('siparis_create', ['musteri_id' => $musteri_id]) }}" class="btn btn-warning">Sipariş Ekle</a>
 
-            <a class="btn btn-secondary" href="{{ route('musteriler') }}" role="button">Geri</a>
-        </div>
-
-        <hr> --}}
     @endsection

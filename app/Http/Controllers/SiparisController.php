@@ -109,25 +109,25 @@ class SiparisController extends Controller
             $siparis->power_kablo = "yok";
 
         }
-       
+
         if ($siparis->tahsilat == "money_paid") {
-           
 
-            return redirect()->route('siparis.index', ['musteri_id' => $siparis->musteri_id])->with('fail','sipariş kasa defterine işlendiğinden güncelleme yapılamaz.');
 
-        }else{
+            return redirect()->route('siparis.index', ['musteri_id' => $siparis->musteri_id])->with('fail', 'sipariş kasa defterine işlendiğinden güncelleme yapılamaz.');
+
+        } else {
             $siparis->save();
 
             return redirect()->route('siparis.index', ['musteri_id' => $siparis->musteri_id]);
         }
-      
+
     }
     public function destroy($siparis_id, $musteri_id)
     {
 
         $siparis = Siparis::find($siparis_id);
         if ($siparis->tahsilat == "money_paid") {
-            return redirect()->route('siparis.index', ['musteri_id' => $musteri_id])->with('fail','kasadefterine kaydı yapıldığı için siparişi silemezsiniz.');
+            return redirect()->route('siparis.index', ['musteri_id' => $musteri_id])->with('fail', 'kasadefterine kaydı yapıldığı için siparişi silemezsiniz.');
 
         }
         if ($siparis->tahsilat == "money_return") {
@@ -138,7 +138,7 @@ class SiparisController extends Controller
             $siparis->delete();
             return redirect()->route('siparis.index', ['musteri_id' => $musteri_id]);
         }
-      
+
 
 
     }
@@ -153,40 +153,55 @@ class SiparisController extends Controller
 
     public function tahsilatlar()
     {
-        $siparisler = Siparis::where('tahsilat', '!=', 'money_paid')->get();
+        //$siparisler = Siparis::where('tahsilat', '!=', 'money_paid')->get();
+        $siparisler = DB::table('siparises')
+            ->join('musteries', 'siparises.musteri_id', '=', 'musteries.id')
+            ->select('musteries.adi_soyadi', 'siparises.yazici_model', 'siparises.ariza', 'siparises.fiyat', 'siparises.id')
+            ->where('siparises.tahsilat', '!=', 'money_paid')
+            ->get();
+
         return view('treetoner.tahsilatlar.index', ['siparisler' => $siparisler]);
     }
-    public function tahsilat_money_paid($siparis_id)
+    public function tahsilat($from,$odeme_sekli, $siparis_id, $odeme_durumu)
     {
+    
+        //odeme_sekli değişkeni ne ile ödendiğini belirtir.Kasadefteri veritabanına
+        //ödeme sekli kolonuna kayıt yapılır.
+
+        //ödeme_durumu ise paranın tahsil edilip edilemediği hakkında bilgi verir ve siparişler tablosunda 
+        //tahsilat kısmına kayıt edilir.
+
+        //from işlemin siparisler üzerinden veya kasadefteri üzerinden yapıldığını belirtir.
+
         $siparis = Siparis::find($siparis_id);
-        $siparis->tahsilat = "money_paid";
+        $siparis->tahsilat = $odeme_durumu;
         $siparis->save();
+
+
         //ödemesi yapılan tahsilat kasa defterine atılacak...
-        $gelir = new Kasadefteri;
-        $musteri = Musteri::find($siparis->musteri_id);
-        if ($siparis->yazici_model == "") {
-            $gelir->aciklama = $musteri->adi_soyadi . " isimli müşterinin Yazıcı Tamir/Bakım ücreti (" . $siparis->yazıcı_model . ")";
-        } else {
-            $gelir->aciklama = $musteri->adi_soyadi . " isimli müşterinin Yazıcı Tamir/Bakım ücreti";
+        if ($odeme_durumu == 'money_paid') {
+            $kasadefteri_kayit = new Kasadefteri;
+            $musteri = Musteri::find($siparis->musteri_id);
+            if ($siparis->yazici_model == "") {
+                $kasadefteri_kayit->aciklama = $musteri->adi_soyadi . " isimli müşterinin Yazıcı Tamir/Bakım ücreti (" . $siparis->yazıcı_model . ")";
+            } else {
+                $kasadefteri_kayit->aciklama = $musteri->adi_soyadi . " isimli müşterinin Yazıcı Tamir/Bakım ücreti";
+            }
+            $kasadefteri_kayit->fiyat = $siparis->fiyat;
+            $kasadefteri_kayit->odeme_sekli = $odeme_sekli;
+            //from nereden kayıt yapıldığını belirtir.
+            $kasadefteri_kayit->from=$from;
+            $kasadefteri_kayit->save();
         }
-        $gelir->fiyat = $siparis->fiyat;
-        $gelir->save();
-        $siparisler = Siparis::where('tahsilat', '!=', 'money_paid')->get();
+
+        $siparisler = Siparis::where('tahsilat', '!=', 'money_paid')
+        ->where('tahsilat', '!=', 'money_return')
+        ->get();
         return view('treetoner.tahsilatlar.index', ['siparisler' => $siparisler]);
 
 
     }
-    public function tahsilat_money_return($siparis_id)
-    {
-        $siparis = Siparis::find($siparis_id);
-        $siparis->tahsilat = "money_return";
-        $siparis->save();
-
-        $siparisler = Siparis::where('tahsilat', '!=', 'money_paid')->get();
-        return view('treetoner.tahsilatlar.index', ['siparisler' => $siparisler]);
-
-
-    }
+   
 
 
 }

@@ -12,9 +12,11 @@
         </div>
         @if (auth::user()->id == 1)
             <div style="margin:3%">
-                <a class="btn btn-outline-success" href="/kasadefteri" style="text-align:left;" role="button">Günlük İşlemler</a>
+                <a class="btn btn-outline-success" href="/kasadefteri" style="text-align:left;" role="button">Günlük
+                    İşlemler</a>
 
-                <a class="btn btn-outline-success" href="/kasadefteri_daily" style="text-align:left;" role="button">Tüm Kayıtlar</a>
+                <a class="btn btn-outline-success" href="/kasadefteri_daily" style="text-align:left;" role="button">Tüm
+                    Kayıtlar</a>
 
             </div>
         @endif
@@ -28,18 +30,47 @@
 
                     <form action="/gelirgider" method="post">
                         @csrf
+                        <input type="text" name="from" value="kasadefteri" hidden>
+
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Açıklama</label>
-                            <textarea class="form-control" name="aciklama" rows="3">{{ old('aciklama') }}</textarea>
+                            <textarea class="form-control" name="aciklama" rows="3"></textarea>
                         </div>
                         <div class="input-group col-md-13 mb-3">
-                            <span class="input-group-text">Fiyat</span>
-                            <input type="number" name="fiyat" Step=".01" value="{{ old('fiyat') }}" class="form-control">
+                            <span class="input-group-text" >Fiyat</span>
+                            <input type="number" name="fiyat" Step=".01" 
+                                class="form-control">
                             <input hidden name="gelirgider" value="gelir">
                         </div>
-                        <div style="text-align: center">
-                            <button type="submit" class="btn btn-sm btn-success">Gelir Ekle</button>
+                        <div class="card-body">
+                            <h6>Ödeme Yöntemini Seçiniz</h6>
+                            <div class="form-check">
+                                <input value="nakit" class="form-check-input" type="radio" name="odeme_sekli"
+                                    id="flexRadioDefault1" checked>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Nakit
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input value="card" class="form-check-input" type="radio" name="odeme_sekli"
+                                    id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Kart
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input value="eft" class="form-check-input" type="radio" name="odeme_sekli"
+                                    id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Eft
+                                </label>
+                            </div>
                         </div>
+                          <div style="text-align: center" >
+                            <input type="submit" value="Gelir Ekle" class="btn btn-sm btn-success">
+
+                          </div>
+
 
                     </form>
 
@@ -56,19 +87,51 @@
                 <div class="card-body ">
                     <form action="/gelirgider" method="post">
                         @csrf
+                        <input type="text" name="from" value="kasadefteri" hidden>
+
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Açıklama</label>
                             <textarea class="form-control" name="aciklama" rows="3"></textarea>
                         </div>
                         <div class="input-group col-md-13 mb-3">
                             <span class="input-group-text">Fiyat</span>
-                            <input type="text" name="fiyat" class="form-control">
+                            <input type="number" Step=".01" name="fiyat" class="form-control">
                             <input hidden name="gelirgider" value="gider">
 
                         </div>
-                        <div style="text-align: center">
-                            <button style="text-align:center;" type="submit" class="btn btn-sm btn-danger">Gider Ekle</button>
+
+                        <div class="card-body">
+                            <h6>Ödeme Yöntemini Seçiniz</h6>
+                            <div class="form-check">
+                                <input value="nakit" class="form-check-input" type="radio" name="odeme_sekli"
+                                    id="flexRadioDefault1" checked>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Nakit
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input value="card" class="form-check-input" type="radio" name="odeme_sekli"
+                                    id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Kart
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input value="eft" class="form-check-input" type="radio" name="odeme_sekli"
+                                    id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Eft
+                                </label>
+                            </div>
                         </div>
+                          <div style="text-align: center" >
+                            <input type="submit" value="Gider Ekle" class="btn btn-sm btn-danger">
+
+                          </div>
+                       
+
+
+
                     </form>
                 </div>
             </div>
@@ -109,6 +172,7 @@
 
                         <th>Açıklama</th>
                         <th>Fiyat</th>
+                        <th>Ödeme Şekli</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -122,6 +186,15 @@
                             @else
                                 <th>{{ $kayit->fiyat }}</th>
                             @endif
+                            <th>
+                            @if ($kayit->odeme_sekli=="card")
+                                Kart
+                            @else
+                            {{$kayit->odeme_sekli}}
+                            @endif    
+                            
+                            </th>
+
                             <th>
                                 <form action="/kayitsil/{{ $kayit->id }}" method="post">
                                     @csrf

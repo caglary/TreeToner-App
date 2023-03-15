@@ -132,12 +132,15 @@ class KasadefteriController extends Controller
             $kasadefteri->fiyat = $request->get('fiyat');
 
         }
-
+        
+        $kasadefteri->odeme_sekli=$request->get("odeme_sekli");
+        $kasadefteri->from=$request->get("from");
 
 
         $kasadefteri->save();
 
         return redirect()->route('kasadefteri.index');
+        
     }
 
     /**
@@ -182,10 +185,17 @@ class KasadefteriController extends Controller
      */
     public function destroy($id)
     {
-
+        //alacak defterindeki siparisler, tahsil edilip 
+        //kasadefterine kayıt edildiklerinde kaydı silme işlemi yapılmaz.
         $kayit = Kasadefteri::find($id);
-        $kayit->delete();
-        return Redirect::back();
+        if($kayit->from =="siparis"){
+            return Redirect::back()->with('fail','Kayıt işlemi Alacak defteri üzerinden yapıldığı için silme işlemi yapamazsınız.');
+
+        }else{
+            $kayit->delete();
+            return Redirect::back()->with('success','Silme işlemi başarılı');
+        }
+       
 
     }
 }

@@ -64,8 +64,9 @@ Route::delete('/kayitsil/{id}',[KasadefteriController::class,'destroy'])->middle
 
 //Tahsilatlar
 Route::get('/tahsilatlar',[SiparisController::class,'tahsilatlar']);
-Route::post('/tahsilatlar/money_paid/{id}',[SiparisController::class,'tahsilat_money_paid']);
-Route::post('/tahsilatlar/money_return/{id}',[SiparisController::class,'tahsilat_money_return']);
+Route::post('/tahsilatlar/{siparis}/{odeme}/{id}/{odeme_durumu}',[SiparisController::class,'tahsilat']);
+
+
 
 
 

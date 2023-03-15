@@ -1,14 +1,14 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-expand sidebar-dark-primary " style="height: 100%;position:fixed">
+<aside class="main-sidebar sidebar-expand sidebar-dark-primary " style="height: 100%;position:fixed;">
 
 
     <!-- Sidebar -->
-    <div class="sidebar sidebar-collapse ">
+    <div class="sidebar sidebar-collapse " >
         <!-- Sidebar user panel (optional) -->
         <div>
             <div><br>
                 <img src="/img/treetonerlogosmall.jpeg" 
-                    style=" ;width: 80%; height: 80%; ">
+                    style=" ;width: 100%; height: 80%; ">
             </div>
 
         </div><br>
