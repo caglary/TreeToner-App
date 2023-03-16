@@ -52,7 +52,7 @@
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input value="card" class="form-check-input" type="radio" name="odeme_sekli"
+                                <input value="Kart" class="form-check-input" type="radio" name="odeme_sekli"
                                     id="flexRadioDefault1">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Kart
@@ -111,7 +111,7 @@
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input value="card" class="form-check-input" type="radio" name="odeme_sekli"
+                                <input value="Kart" class="form-check-input" type="radio" name="odeme_sekli"
                                     id="flexRadioDefault1">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Kart
