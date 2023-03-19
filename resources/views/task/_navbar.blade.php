@@ -1,30 +1,28 @@
- {{-- navbar --}}
- <nav  class="navbar navbar-expand-lg navbar-light bg-light">
+
+{{-- navbar --}}
+
    
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+   
+        <ul class="nav">
            
-            <li class="nav-item">
-                <a class="nav-link"  href="/task/add_task">Not Ekle</a>
+            <li class="nav-item" style="margin:3px;">
+                <a class="btn btn-sm btn-outline-secondary"  href="/task/add_task">Not Ekle</a>
             </li>
             
-            <li class="nav-item">
-                <a class="nav-link" href="/task/not_completed">Notlar</a>
+            <li class="nav-item" style="margin:3px;">
+                <a class="btn btn-sm btn-outline-info"  href="/task/not_completed">Notlar</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/task/completed">Tamamlananlar</a>
+            <li class="nav-item" style="margin:3px;">
+                <a class="btn btn-sm btn-outline-success"  href="/task/completed">Tamamlananlar</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/task/deleted">Çöp Kutusu</a>
+            <li class="nav-item" style="margin:3px;">
+                <a class="btn btn-sm btn-outline-dark"  href="/task/deleted">Çöp Kutusu</a>
             </li>
-            <li class="nav-item" style="color: red">
-                <a class="nav-link" href="/task.last_day"> <strong>Günü Gelenler</strong></a>
+            <li class="nav-item" style="margin:3px;">
+                <a class="btn btn-sm btn-outline-danger"  href="/task.last_day"> <strong>Günü Gelenler</strong></a>
             </li>
             
         </ul>
-    </div>
-</nav>
-<script>
-    
-</script>
+
+
 {{-- End navbar --}}
