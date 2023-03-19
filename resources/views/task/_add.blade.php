@@ -1,7 +1,6 @@
-    &nbsp;
-    &nbsp;
+ 
 
-        <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="mt-3 row d-flex justify-content-center align-items-center h-100 w-50">
 
 
             
@@ -16,8 +15,8 @@
         
                         <div class="pb-2">
                             <div class="card">
-                                <div class="card-body">
-                                    <form action="/task.store" method="POST">
+                                <div class="card-body form-group-control">
+                                    <form action="/task.store" method="POST" >
                                         @csrf
                                         <div class="mb-3">
                                             <div>
@@ -35,19 +34,23 @@
                                             </div>
                                             <div>
                                                 <label>Yapılması gereken tarih </label>
-                                                <input style="margin-left:3%" class="small" name="last_date"
+                                                <input class="small form-control w-auto mb-3" name="last_date"
                                                     type="date" value="<?php echo date('Y-m-d'); ?>" />
         
                                             </div>
                                             <label for="">Önem Derecesi</label>
-                                            <select class="select" style="margin-left:3%" name="priority_level">
+                                            <select class="select form-control w-auto mb-3"  name="priority_level">
                                                 <option value="high">yüksek</option>
                                                 <option value="medium" selected>normal</option>
                                                 <option value="low">düşük</option>
         
                                             </select>
                                             <div>
-                                                <button  type="submit" class="btn btn-success btn-sm">Notunuzu Ekleyin</button>
+                                                <hr>
+                                                <div class="text-center">
+                                                    <button  type="submit" class="btn btn-success btn-sm ">Notunuzu Ekleyin</button>
+
+                                                </div>
         
                                                 <script>
                                                     // JavaScript
