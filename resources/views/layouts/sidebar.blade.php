@@ -1,16 +1,19 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-expand sidebar-dark-primary " style="height: 100%;position:fixed;">
+<aside class="main-sidebar sidebar-expand sidebar-dark-primary " style="
+display: inline-block;
+	vertical-align: top;
+	height: 100%;
+    padding:1%;
+	overflow: auto;
+    position:fixed;
+
+">
 
 
     <!-- Sidebar -->
     <div class="sidebar sidebar-collapse ">
         <!-- Sidebar user panel (optional) -->
-        <div>
-            <div><br>
-                <img src="/img/treetonerlogosmall.jpeg" style=" ;width: 100%; height: 80%; ">
-            </div>
-
-        </div><br>
+       
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -21,7 +24,9 @@
 
 
                 </li>
+               
                 <div style="text-align: center;color:azure; font-family: Times New Roman, Times, serif;">
+                    <hr>
                     @include('common.doviz_kur')
                     <hr>
                 </div>
@@ -62,6 +67,15 @@
                         {{-- <i class="nav-icon fas fa-th"></i> --}}
 
                         Kasa Defteri
+
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/task" class="nav-link">
+                        {{-- <i class="nav-icon fas fa-th"></i> --}}
+
+                        Notlarım
 
                         </p>
                     </a>

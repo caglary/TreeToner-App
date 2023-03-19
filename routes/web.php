@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -68,6 +69,21 @@ Route::post('/tahsilatlar/{siparis}/{odeme}/{id}/{odeme_durumu}',[SiparisControl
 
 //Ödeme şeklini değiştirmek için (kart-eft-nakit)
 Route::post('/odeme_sekli_degistir/{id}',[SiparisController::class,'odeme_sekli_degistir']);
+
+//Task
+Route::get('/task',[TaskController::class,'index'] )->middleware('auth');
+Route::get('/task.last_day',[TaskController::class,'last_day'] )->middleware('auth');
+
+Route::post('/task.store',[TaskController::class,'store'] )->middleware('auth');
+Route::post('/task.update',[TaskController::class,'update'] )->middleware('auth');
+Route::get('/task/{result}',[TaskController::class,'result'] )->middleware('auth');
+Route::post('/task.delete/{id}',[TaskController::class,'destroy'] )->middleware('auth');
+
+
+
+
+
+
 
 
 
