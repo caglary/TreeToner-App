@@ -16,8 +16,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks=Task::all();
-        return view('task.index',['tasks'=>$tasks]);
+        $tasks = Task::all();
+        return view('task.index', ['tasks' => $tasks]);
     }
 
     /**
@@ -40,18 +40,18 @@ class TaskController extends Controller
     {
         $validated = $request->validate([
             'writed_task' => 'required',
-            
+
 
         ], [
                 'writed_task.required' => 'Notunuzu yazmadınız.'
-                
+
 
             ]);
 
-        $task=new Task;
-        $task->writed_task= $request->writed_task;
-        $task->priority_level=$request->priority_level;
-        $task->last_date=$request->last_date;
+        $task = new Task;
+        $task->writed_task = $request->writed_task;
+        $task->priority_level = $request->priority_level;
+        $task->last_date = $request->last_date;
         $task->save();
         return redirect('/task')->with('success', 'Notunuz eklenmiştir.');
 
@@ -89,10 +89,23 @@ class TaskController extends Controller
      */
     public function update(Request $request)
     {
-        $task= Task::find($request->id);
-        $task->result=$request->result;
-        $task->save();
-        return redirect()->back();
+        if ($request->buton == "tamamlandi") {
+            $task = Task::find($request->id);
+            $task->result = $request->result;
+
+            $task->save();
+            return redirect()->back();
+        } elseif ($request->buton == "guncelle") {
+            $task = Task::find($request->id);
+            $task->writed_task = $request->writed_task;
+            $task->last_date = $request->last_date;
+
+            $task->save();
+            return redirect()->back()->with('success', 'güncellendi.');
+        }
+
+
+
     }
 
     /**
@@ -103,37 +116,36 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        $task= Task::find($id);
+        $task = Task::find($id);
         $task->delete();
         return redirect()->back();
 
 
     }
-    public function result( $result){
-        if($result=="add_task"){
-            $tasks= Task::where('result',$result)->get();
-            return view('task.index',['tasks'=>$tasks]);
+    public function result($result)
+    {
+        if ($result == "add_task") {
+            $tasks = Task::where('result', $result)->get();
+            return view('task.index', ['tasks' => $tasks]);
+        } elseif ($result == "completed") {
+            $tasks = Task::where('result', $result)->get();
+            return view('task.completed', ['tasks' => $tasks]);
+        } elseif ($result == "not_completed") {
+            $tasks = Task::where('result', $result)->get();
+            return view('task.not_completed', ['tasks' => $tasks]);
+        } elseif ($result == "deleted") {
+            $tasks = Task::where('result', $result)->get();
+            return view('task.deleted', ['tasks' => $tasks]);
         }
-        elseif($result=="completed"){
-            $tasks= Task::where('result',$result)->get();
-            return view('task.completed',['tasks'=>$tasks]);
-        }
-        elseif($result=="not_completed"){
-            $tasks= Task::where('result',$result)->get();
-            return view('task.not_completed',['tasks'=>$tasks]);
-        }
-        elseif($result=="deleted"){
-            $tasks= Task::where('result',$result)->get();
-            return view('task.deleted',['tasks'=>$tasks]);
-        }
-       
+
     }
 
-    public function last_day(){
-      
-        $tasks=Task::whereDate('last_date', '=', Carbon::today()->toDateString())
-        ->where('result','=','not_completed')->get();
-        return view('task.not_completed',['tasks'=>$tasks]);
-    
+    public function last_day()
+    {
+
+        $tasks = Task::whereDate('last_date', '=', Carbon::today()->toDateString())
+            ->where('result', '=', 'not_completed')->get();
+        return view('task.not_completed', ['tasks' => $tasks]);
+
     }
 }

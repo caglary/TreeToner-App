@@ -21,6 +21,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <div>
+                                @include('common.alert')
+                                
+                            </div>
                             @foreach ($tasks as $task)
                                 @if ($task->priority_level == 'high')
                                     <tr style="background-color:rgb(229, 208, 208)">
@@ -31,7 +35,34 @@
                                 @endif
 
                                 <td>
-                                    {{ $task->writed_task }}
+                                    <form action="/task.update" method="POST">
+
+                                        @csrf
+
+                                        <input type="text" name="buton" value="guncelle" hidden>
+
+                                        <input type="text" name="id" value={{ $task->id }} hidden>
+                                    <div>
+                                        <textarea name="writed_task" class="form-control" id="" cols="10" rows="5">{{ $task->writed_task }}</textarea>
+
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <label>{{ icon_select('tarih') }} Yapılması gereken tarih </label>
+                                            <input class="small form-control w-auto mb-3" name="last_date"
+                                                type="date" value={{$task->last_date}} />
+    
+                                        </div>
+                                       
+                                        <div>
+                                            <button class="btn btn-sm btn-secondary ml-1 mt-1" type="submit">{{ icon_select('check') }} Güncelle</button>
+                                    </div>
+                                   
+                                       
+
+
+
+                                    </form>
                                 </td>
                                 <td>
                                     @php
@@ -56,6 +87,8 @@
                                                 @csrf
 
                                                 <input type="text" name="result" value="completed" hidden>
+                                                <input type="text" name="buton" value="tamamlandi" hidden>
+
                                                 <input type="text" name="id" value={{ $task->id }} hidden>
 
                                                 <button class="btn btn-sm btn-success"
@@ -66,7 +99,6 @@
 
                                     </form>
                                 </td>
-                                </tr>
                             @endforeach
                         </tbody>
                     </table>

@@ -1,16 +1,7 @@
 @extends('layouts.app')
+@include('common.icons')
 @section('content')
-    <div class="center">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-    </div>
+    @include('common.alert')
     <div class="container" style="margin: auto">
         <div class="row justify-content-center">
             <div class="col-md-8">

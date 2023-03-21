@@ -32,6 +32,9 @@ Route::get('/siparis_show/{siparis_id}/{musteri_id}', [SiparisController::class,
 Route::post('/siparisler/{siparis_id}/{musteri_id}', [SiparisController::class, 'update'])->name('siparis_update');
 Route::post('/siparis_delete/{siparis_id}/{musteri_id}',[SiparisController::class,'destroy'])->name('siparis.sil');
 Route::get('/siparis_show/{siparis_id}',[SiparisController::class,'siparis_goster'])->name('siparis.goster');
+Route::get('/siparis_detay_pdf/{id}',[SiparisController::class,'siparis_detay_pdf'])->middleware('auth');
+
+
 Auth::routes([
     
 ]);

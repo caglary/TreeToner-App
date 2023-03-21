@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('common.icons')
 
 @section('content')
 <div class="container">

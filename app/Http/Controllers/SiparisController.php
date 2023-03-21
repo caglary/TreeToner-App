@@ -4,19 +4,34 @@ namespace App\Http\Controllers;
 
 
 
-use App\Models\Kasadefteri;
 use App\Models\Musteri;
 use App\Models\Siparis;
+
+
+
+use App\Models\Kasadefteri;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\TryCatch;
 
-
+/**
+ * Summary of SiparisController
+ */
 class SiparisController extends Controller
 {
+    /**
+     * Summary of __construct
+     */
     public function __construct()
     {
         $this->middleware('auth');
     }
+    /**
+     * Summary of index
+     * @param mixed $musteri_id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index($musteri_id)
     {
 
@@ -36,6 +51,11 @@ class SiparisController extends Controller
 
 
     }
+    /**
+     * Summary of create
+     * @param mixed $musteri_id
+     * @return \Illuminate\Contracts\View\View|mixed
+     */
     public function create($musteri_id)
     {
 
@@ -43,6 +63,11 @@ class SiparisController extends Controller
             ->with('musteri_id', $musteri_id);
     }
 
+    /**
+     * Summary of store
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|mixed
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -83,11 +108,24 @@ class SiparisController extends Controller
         return redirect()->route('siparis.index', ['musteri_id' => $siparis->musteri_id]);
     }
 
+    /**
+     * Summary of show
+     * @param mixed $siparis_id
+     * @param mixed $musteri_id
+     * @return \Illuminate\Contracts\View\View|mixed
+     */
     public function show($siparis_id, $musteri_id)
     {
         $siparis = Siparis::find($siparis_id);
         return view('treetoner.siparisler.show', ['siparis_id' => $siparis_id, 'musteri_id' => $musteri_id])->with('siparis', $siparis);
     }
+    /**
+     * Summary of update
+     * @param mixed $siparis_id
+     * @param mixed $musteri_id
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|mixed
+     */
     public function update($siparis_id, $musteri_id, Request $request)
     {
         $siparis = Siparis::find($siparis_id);
@@ -122,6 +160,12 @@ class SiparisController extends Controller
         }
 
     }
+    /**
+     * Summary of destroy
+     * @param mixed $siparis_id
+     * @param mixed $musteri_id
+     * @return \Illuminate\Http\RedirectResponse|mixed
+     */
     public function destroy($siparis_id, $musteri_id)
     {
 
@@ -142,6 +186,11 @@ class SiparisController extends Controller
 
 
     }
+    /**
+     * Summary of siparis_goster
+     * @param mixed $siparis_id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function siparis_goster($siparis_id)
     {
         $siparis = Siparis::find($siparis_id);
@@ -151,6 +200,10 @@ class SiparisController extends Controller
 
     }
 
+    /**
+     * Summary of tahsilatlar
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function tahsilatlar()
     {
         //$siparisler = Siparis::where('tahsilat', '!=', 'money_paid')->get();
@@ -162,6 +215,14 @@ class SiparisController extends Controller
 
         return view('treetoner.tahsilatlar.index', ['siparisler' => $siparisler]);
     }
+    /**
+     * Summary of tahsilat
+     * @param mixed $from
+     * @param mixed $odeme_sekli
+     * @param mixed $siparis_id
+     * @param mixed $odeme_durumu
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function tahsilat($from, $odeme_sekli, $siparis_id, $odeme_durumu)
     {
 
@@ -201,6 +262,12 @@ class SiparisController extends Controller
 
 
     }
+    /**
+     * Summary of odeme_sekli_degistir
+     * @param mixed $id
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|mixed
+     */
     public function odeme_sekli_degistir($id, Request $request)
     {
 
@@ -213,6 +280,23 @@ class SiparisController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Summary of siparis_detay_pdf
+     * @param mixed $id
+     * @return \Illuminate\Http\Response
+     */
+    public function siparis_detay_pdf($id){
+        $siparis= Siparis::find($id);
+        $musteri=Musteri::find($siparis->musteri_id);
+       try {
+        $pdf = Pdf::loadView('treetoner.siparisler.pdf',['siparis'=>$siparis,'musteri'=>$musteri]);
+        return $pdf->stream($musteri->adi_soyadi.".pdf", array("Attachment" => false));
+       } catch (\Throwable $th) {
+        return redirect()->back();
+       }
+
+       
+    }   
 
 
 }

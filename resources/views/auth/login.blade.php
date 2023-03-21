@@ -1,5 +1,6 @@
 @include('layouts.header')
 
+@include('common.icons')
 
 
 <div class="container" style="padding: 10%">
