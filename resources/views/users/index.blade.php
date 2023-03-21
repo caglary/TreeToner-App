@@ -1,11 +1,12 @@
 @extends('layouts.app')
+@include('common.icons')
 @section('content')
 @include('common.alert')
 <div class="row justify-content-center">
     <div class="col-md-3">
         <div class="card">
             <div class="card-header card-title" style="text-align: center">
-                <strong >Kullanıcı İşlemleri</strong>
+                <strong >{{ icon_select('users') }} Kullanıcı İşlemleri</strong>
             </div>
         </div>
     </div>
@@ -37,7 +38,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <a href="/users/{{$user->id}}/edit" class="btn btn-sm btn-success"
-                                    title="Show">Güncelle</a>
+                                    title="Show">{{ icon_select('guncelle') }} Güncelle</a>
                                     <input type="submit"  class="btn btn-sm  btn-danger" onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')" value="Sil">
                                     
                                 </form>

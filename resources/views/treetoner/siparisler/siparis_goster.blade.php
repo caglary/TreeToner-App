@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('common.icons')
 @section('content')
     @include('common.alert')
     <div class="container" style="margin: auto">
@@ -6,7 +7,7 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header card-title">
-                        <strong>Sipariş Detay</strong>
+                        <strong>{{icon_select('detay')}} Sipariş Detay</strong>
                     </div>
                     @include('common.alert')
                     <div class="card-body">
@@ -71,12 +72,12 @@
 
                                         @if ($siparis->tahsilat != 'money_paid')
                                             <a href="{{ route('siparis_show', ['siparis_id' => $siparis->id, 'musteri_id' => $siparis->musteri_id]) }}"
-                                                class="btn btn-sm btn-squre btn-primary" title="Show">Güncelle</a>
+                                                class="btn btn-sm btn-squre btn-primary" title="Show">{{icon_select('guncelle')}} Güncelle</a>
                                         @endif
 
                                         <a class="btn btn-secondary btn-sm"
                                             href="{{ route('siparis.index', ['musteri_id' => $siparis['musteri_id']]) }}"
-                                            role="button">Geri</a>
+                                            role="button">{{icon_select('geri')}} Geri</a>
 
 
                                     </div>

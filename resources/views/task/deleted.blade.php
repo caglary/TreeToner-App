@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@include('common.icons')
+
 @section('content')
     @include('task._navbar')
     <section class="vh-100">
@@ -12,9 +14,9 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Not</th>
+                                <th>{{ icon_select('not') }} Not</th>
 
-                                <th>İşlem</th>
+                                <th>{{ icon_select('islem') }} İşlem</th>
 
                             </tr>
                         </thead>
@@ -40,7 +42,7 @@
 
 
                                                 <button class="btn btn-sm btn-danger"
-                                                    style="margin-left: 3%;margin-right:3%" type="submit">Sil</button>
+                                                    style="margin-left: 3%;margin-right:3%" type="submit">{{ icon_select('sil') }} Sil</button>
 
 
 

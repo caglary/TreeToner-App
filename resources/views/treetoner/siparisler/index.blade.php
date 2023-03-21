@@ -1,11 +1,12 @@
 @extends('layouts.app')
+@include('common.icons')
 @section('content')
     @include('common.alert')
 
     <div class="row justify-content-left">
         <div class="col-md-6">
             <div class="card bg-light mb-3" style="max-width: 30rem;">
-                <div class="card-header">Müşteri Bilgisi</div>
+                <div class="card-header">{{icon_select('musteri-bilgi')}} Müşteri Bilgisi</div>
                 <div class="card-body">
 
                     <strong> Kurum Adı: </strong>{{ $musteri->kurum_adi }} <br>
@@ -66,11 +67,11 @@
                             @else
                                 @if ($siparis->tahsilat == 'money_paid')
                                     <td style="background-color: rgb(74, 99, 74);color:rgb(236, 231, 231);">
-                                        <h6>Ödendi</h6>
+                                        <h6>{{icon_select('odendi')}} Ödendi</h6>
                                     </td>
                                 @elseif($siparis->tahsilat == 'money_wait')
                                     <td style="background-color: rgb(158, 158, 118);color:rgb(230, 242, 11);">
-                                        <h6>Ödenecek</h6>
+                                        <h6>{{icon_select('odenecek')}} Ödenecek</h6>
                                     </td>
                                 @endif
                             @endif
@@ -84,17 +85,17 @@
                                 <form method="POST"
                                     action="{{ route('siparis.sil', ['siparis_id' => $siparis->id, 'musteri_id' => $siparis->musteri_id]) }}">
                                     <a href="/siparis_show/{{ $siparis->id }}"
-                                        class="btn btn-outline-info btn-sm">Göster</a>
+                                        class="btn btn-outline-info btn-sm">{{icon_select('goster')}} Göster</a>
                                 {{-- kasa defterine işli kayıtlarda güncelleme ve silme işlemi yapılamıyor. --}}
 
                                     @if ($siparis->tahsilat != 'money_paid')
                                         <a href="{{ route('siparis_show', ['siparis_id' => $siparis->id, 'musteri_id' => $siparis->musteri_id]) }}"
-                                            class="btn btn-sm btn-squre btn-outline-success" title="Show">Güncelle</a>
+                                            class="btn btn-sm btn-squre btn-outline-success" title="Show">{{icon_select('guncelle')}} Güncelle</a>
 
                                         @csrf
                                         <button class="btn btn-sm btn-squre btn-outline-danger" type="submit"
                                             onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">
-                                            sil</button>
+                                            {{icon_select('sil')}} sil</button>
                                     @endif
 
                                 </form>
@@ -114,9 +115,9 @@
             </div>
     @endif
     <div>
-        <a href="{{ route('siparis_create', ['musteri_id' => $musteri_id]) }}" class="btn btn-warning">Sipariş Ekle</a>
+        <a href="{{ route('siparis_create', ['musteri_id' => $musteri_id]) }}" class="btn btn-warning">{{icon_select('ekle')}} Sipariş Ekle</a>
 
-        <a class="btn btn-secondary" href="{{ route('musteriler') }}" role="button">Geri</a>
+        <a class="btn btn-secondary" href="{{ route('musteriler') }}" role="button">{{icon_select('geri')}} Geri</a>
     </div>
 
     <hr>

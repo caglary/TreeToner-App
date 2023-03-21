@@ -1,5 +1,6 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-expand sidebar-dark-primary " style="
+<aside class="main-sidebar sidebar-expand sidebar-dark-primary "
+    style="
 display: inline-block;
 	vertical-align: top;
 	height: 100%;
@@ -13,7 +14,7 @@ display: inline-block;
     <!-- Sidebar -->
     <div class="sidebar sidebar-collapse ">
         <!-- Sidebar user panel (optional) -->
-       
+
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -24,28 +25,30 @@ display: inline-block;
 
 
                 </li>
-               
+
                 <div style="text-align: center;color:azure; font-family: Times New Roman, Times, serif;">
                     <hr>
                     @include('common.doviz_kur')
                     <hr>
                 </div>
-               
+
                 <li class="nav-item">
-                    <a href="/" class="nav-link">
-                        {{-- <i class="nav-icon fas fa-th"></i> --}}
+                    <a href="/" class="nav-link ">
+                        <i class="fa-solid fa-users"></i>
                         <p>
 
-                           
+
                             Müşteri İşlemleri
 
                         </p>
+
                     </a>
+
                 </li>
                 @if (auth::user()->id == 1)
                     <li class="nav-item">
                         <a href="/users" class="nav-link">
-                            {{-- <i class="nav-icon fas fa-th"></i> --}}
+                            <i class="fa-solid fa-user"></i>
                             <p>
                                 Kullanıcı İşlemleri
 
@@ -55,7 +58,7 @@ display: inline-block;
                 @endif
                 <li class="nav-item">
                     <a href="/tahsilatlar" class="nav-link">
-                        {{-- <i class="nav-icon fas fa-th"></i> --}}
+                        <i class="fa-solid fa-book"></i>
                         <p>
                             Alacak Defteri
 
@@ -64,16 +67,17 @@ display: inline-block;
                 </li>
                 <li class="nav-item">
                     <a href="/kasadefteri" class="nav-link">
-                        {{-- <i class="nav-icon fas fa-th"></i> --}}
+                        <i class="fa-solid fa-cash-register"></i>
+                        <p>
 
-                        Kasa Defteri
+                            Kasa Defteri
 
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/task" class="nav-link">
-                        {{-- <i class="nav-icon fas fa-th"></i> --}}
+                        <i class="fa-solid fa-book-open"></i>
 
                         Notlarım
 

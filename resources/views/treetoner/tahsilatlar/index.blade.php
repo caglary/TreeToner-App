@@ -1,11 +1,12 @@
 @extends('layouts.app')
+@include('common.icons')
 @section('content')
 
     <div class="row justify-content-center">
 
         <div class="col-md-6" style="text-align: center">
             <div class="card bg-light mb-3" style="max-width: 30rem;">
-                <div class="card-header">Alacak Defteri</div>
+                <div class="card-header">{{ icon_select('alacak-defteri') }} Alacak Defteri</div>
                 @if (isset($siparisler))
                 <div class="card-body">
                     <h6>
@@ -60,13 +61,13 @@
                                         @csrf
                                         <button style="margin: 2%;width:100%;" class="btn btn-sm btn-squre btn-success" type="submit"
                                             onclick="return confirm('Ödemesi Yapıldı mı? Evet-(OK) Hayır-(Cancel)')">
-                                            Nakit</button>
+                                            {{icon_select('nakit')}} Nakit</button>
                                     </form>
                                     <form method="POST"action="/tahsilatlar/siparis/Kart/{{ $siparis->id }}/money_paid">
                                         @csrf
                                         <button style="margin: 2%;width:100%;" class="btn btn-sm btn-squre btn-warning" type="submit"
                                             onclick="return confirm('Ödemesi Yapıldı mı? Evet-(OK) Hayır-(Cancel)')">
-                                            Kart</button>
+                                            {{icon_select('kart')}} Kart</button>
                                     </form>
                                
                                    
@@ -75,14 +76,14 @@
                                         @csrf
                                         <button style="margin: 2%;width:100%;" class="btn btn-sm btn-squre btn-info" type="submit"
                                             onclick="return confirm('Ödemesi Yapıldı mı? Evet-(OK) Hayır-(Cancel)')">
-                                            EFT</button>
+                                            {{icon_select('eft')}} EFT</button>
                                     </form>
                                
                                     <form method="POST"action="/tahsilatlar/siparis/money_return/{{ $siparis->id }}/money_return">
                                         @csrf
                                         <button style="margin: 2%;width:100%;" class="btn btn-sm btn-squre btn-danger" type="submit"
                                             onclick="return confirm('İade mi edildi? Evet-(OK) Hayır-(Cancel)')">
-                                            İade</button>
+                                            {{icon_select('iade')}} İade</button>
                                     </form>
                                 </td>
 
@@ -94,7 +95,7 @@
                 </table>
             @else
                 <div class="alert alert-info" role="alert">
-                    Ödemesi yapılmayan herhangi bir sipiriş bulunmamaktadır.
+                    {{ icon_select('bilgi') }} Ödemesi yapılmayan herhangi bir sipiriş bulunmamaktadır.
 
                 </div>
         @endif

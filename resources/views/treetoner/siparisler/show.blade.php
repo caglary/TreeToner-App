@@ -16,7 +16,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-title">
-                        <strong>Sipariş Detay</strong>
+                        <strong>{{icon_select('detay')}} Sipariş Detay</strong>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -95,11 +95,11 @@
                                         </div>
                                         <div><input type="hidden" name="musteri_id" value="{{ $musteri_id }}"></div>
                                         <div class="col-12" style="margin: 5px">
-                                            <button class="btn btn-primary" type="submit">Güncelle</button>
+                                            <button class="btn btn-primary" type="submit">{{icon_select('guncelle')}} Güncelle</button>
 
                                             <a class="btn btn-secondary"
                                                 href="{{ route('siparis.index', ['musteri_id' => $musteri_id]) }}"
-                                                role="button">Geri</a>
+                                                role="button">{{icon_select('geri')}} Geri</a>
 
                                         </div>
 

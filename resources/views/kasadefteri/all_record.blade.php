@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@include('common.icons')
+
 @section('content')
     @include('common.alert')
    
@@ -6,22 +8,22 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-header card-title" style="text-align: center">
-                    <strong>Kasa Defteri</strong>
+                    <strong>{{ icon_select('kasadefteri') }} Kasa Defteri</strong>
                 </div>
             </div>
         </div>
         <div style="margin:3%">
-            <a class="btn btn-outline-success" href="/kasadefteri" style="text-align:left;" role="button">Günlük İşlemler</a>
+            <a class="btn btn-outline-success" href="/kasadefteri" style="text-align:left;" role="button">{{ icon_select('gunluk-islemler') }} Günlük İşlemler</a>
             @if (auth::user()->id == 1)
-            <a class="btn btn-outline-success" href="/kasadefteri_daily" style="text-align:left;" role="button">Tüm Kayıtlar</a>
+            <a class="btn btn-outline-success" href="/kasadefteri_daily" style="text-align:left;" role="button">{{ icon_select('tum-kayitlar') }} Tüm Kayıtlar</a>
             @endif
         </div>
 
         <div class="btn-group">
-            <a href="/kasadefteri_daily" class="btn btn-secondary" aria-current="page">Bugün</a>
-            <a href="/kasadefteri_weekly" class="btn btn-secondary">Bu Hafta</a>
-            <a href="/kasadefteri_monthly" class="btn btn-secondary">Bu Ay</a>
-            <a href="/kasadefteri_yearly" class="btn btn-secondary">Bu Yıl</a>
+            <a href="/kasadefteri_daily" class="btn btn-secondary" aria-current="page">{{ icon_select('bugun') }} Bugün</a>
+            <a href="/kasadefteri_weekly" class="btn btn-secondary">{{ icon_select('bu-hafta') }} Bu Hafta</a>
+            <a href="/kasadefteri_monthly" class="btn btn-secondary">{{ icon_select('bu-ay') }} Bu Ay</a>
+            <a href="/kasadefteri_yearly" class="btn btn-secondary">{{ icon_select('bu-yil') }} Bu Yıl</a>
 
         </div>
 
@@ -80,7 +82,7 @@
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-sm btn-squre btn-outline-danger" type="submit"
-                                        onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">Kaydı
+                                        onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">{{ icon_select('sil') }} Kaydı
                                         Sil</button>
 
                                 </form>

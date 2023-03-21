@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('common.icons')
 @section('content')
 
     <div class="container">
@@ -6,7 +7,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-title">
-                        <strong>Müşteri Güncelleme İşlemi</strong>
+                        <strong>{{icon_select('user-edit')}} Müşteri Güncelleme İşlemi</strong>
                     </div>
                     @include('common.alert')
                     <div class="card-body">
@@ -46,9 +47,9 @@
                                     </div>
 
                                     <div class="col-auto">
-                                        <button type="submit" class="btn btn-success">Bilgileri Güncelle</button>
+                                        <button type="submit" class="btn btn-success">{{icon_select('guncelle')}} Bilgileri Güncelle</button>
                                         <a class="btn btn-secondary" href="{{ route('musteri_show', $musteri['id']) }}"
-                                            role="button">Geri</a>
+                                            role="button">{{icon_select('geri')}} Geri</a>
 
                                     </div>
                                 </form>

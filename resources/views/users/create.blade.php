@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-title">
-                        <strong>Yeni Kullanıcı Bilgileri</strong>
+                        <strong>{{ icon_select('bilgi') }} Yeni Kullanıcı Bilgileri</strong>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -47,7 +47,7 @@
                                             <input type="submit" class="btn btn-success btn-sm" value="Kaydet">
                                             <span></span>
                                             <a href="/users" class="btn btn-sm btn-secondary"
-                                                title="iptal">Geri</a>
+                                                title="iptal">{{ icon_select('geri') }} Geri</a>
 
                                         </div>
                                     </div>

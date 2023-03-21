@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@include('common.icons')
+
 @section('content')
     @include('common.alert')
 
@@ -141,7 +143,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    Günlük Toplam
+                    {{ icon_select('gunluk-toplam') }} Günlük Toplam
                 </div>
                 <div class="card-body ">
                     <div style="text-align: center">
@@ -190,14 +192,17 @@
                             <th>
 
 
-                                <form method="POST" action="/odeme_sekli_degistir/{{$kayit->id}}">
+                                <form method="POST" action="/odeme_sekli_degistir/{{ $kayit->id }}">
                                     @csrf
                                     <div class="dropup">
                                         <button class="dropbtn">{{ $kayit->odeme_sekli }}</button>
                                         <div class="dropup-content">
-                                            <button class="btn btn-sm btn-outline-warning" name="odeme_sekli" value="Kart" type="submit">Kart</button>
-                                            <button class="btn btn-sm btn-outline-warning" name="odeme_sekli" value="Eft" type="submit">Eft</button>
-                                            <button class="btn btn-sm btn-outline-warning" name="odeme_sekli" value="Nakit" type="submit">Nakit</button>
+                                            <button class="btn btn-sm btn-outline-warning" name="odeme_sekli"
+                                                value="Kart" type="submit">{{ icon_select('kart') }} Kart</button>
+                                            <button class="btn btn-sm btn-outline-warning" name="odeme_sekli"
+                                                value="Eft" type="submit">{{ icon_select('eft') }} Eft</button>
+                                            <button class="btn btn-sm btn-outline-warning" name="odeme_sekli"
+                                                value="Nakit" type="submit">{{ icon_select('nakit') }} Nakit</button>
 
                                         </div>
                                     </div>
@@ -271,7 +276,7 @@
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-sm btn-squre btn-outline-danger" type="submit"
-                                        onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">Kaydı
+                                        onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">{{ icon_select('sil') }} Kaydı
                                         Sil</button>
 
                                 </form>

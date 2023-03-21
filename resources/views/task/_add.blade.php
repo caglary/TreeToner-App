@@ -1,6 +1,6 @@
  
 
-        <div class="mt-3 row d-flex justify-content-center align-items-center h-100 w-50">
+        <div class="mt-3 row d-flex justify-content-center align-items-center ">
 
 
             
@@ -29,16 +29,16 @@
                                             </div>
                                             <div style="padding: 1%">
                                                 <button type="button" id="clearBtn" style="float: right"
-                                                    class="btn btn-light btn-sm">Notu Temizle</button>
+                                                    class="btn btn-light btn-sm">{{ icon_select('temizle') }} Notu Temizle</button>
         
                                             </div>
                                             <div>
-                                                <label>Yapılması gereken tarih </label>
+                                                <label>{{ icon_select('tarih') }} Yapılması gereken tarih </label>
                                                 <input class="small form-control w-auto mb-3" name="last_date"
                                                     type="date" value="<?php echo date('Y-m-d'); ?>" />
         
                                             </div>
-                                            <label for="">Önem Derecesi</label>
+                                            <label for="">{{ icon_select('onem-derecesi') }} Önem Derecesi</label>
                                             <select class="select form-control w-auto mb-3"  name="priority_level">
                                                 <option value="high">yüksek</option>
                                                 <option value="medium" selected>normal</option>
@@ -48,7 +48,7 @@
                                             <div>
                                                 <hr>
                                                 <div class="text-center">
-                                                    <button  type="submit" class="btn btn-success btn-sm ">Notunuzu Ekleyin</button>
+                                                    <button  type="submit" class="btn btn-success btn-sm ">{{ icon_select('ekle') }} Notunuzu Ekleyin</button>
 
                                                 </div>
         

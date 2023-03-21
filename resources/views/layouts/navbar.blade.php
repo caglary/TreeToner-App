@@ -1,4 +1,7 @@
 @include('helper.functions')
+
+
+
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand-sm navbar-light ">
     <div
@@ -31,7 +34,7 @@
     <ul class="navbar-nav ml-auto">
 
         <li class="nav-item" style="margin-left:5px">
-            <a class="nav-link" href="/logout" role="button"><i></i>Çıkış</a>
+            <a class="nav-link" href="/logout" role="button"><i class="fa-solid fa-right-from-bracket"></i> Çıkış</a>
         </li>
     </ul>
 </nav>

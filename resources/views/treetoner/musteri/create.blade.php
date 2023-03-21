@@ -1,11 +1,15 @@
 @extends('layouts.app')
+@include('common.icons')
+
 @section('content')
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-title">
-                        <strong>Müşteri Kayıt İşlemi</strong>
+                        
+                        <strong>{{icon_select('musteri-ekle')}} Müşteri Kayıt İşlemi</strong>
                     </div>
                     @include('common.alert')
                     <div class="card-body">

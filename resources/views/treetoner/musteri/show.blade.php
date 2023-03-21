@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('common.icons')
 @section('content')
     <main class="py-5">
 
@@ -8,7 +9,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header card-title">
-                            <strong>Müşteri Detay</strong>
+                            <strong>{{icon_select('user-edit')}} Müşteri Detay</strong>
                         </div>
                         @include('common.alert')
                         <div class="card-body">
@@ -58,10 +59,10 @@
                                     <div class="form-group row mb-0" style="padding: 2%">
                                         <div class="col-md-9 offset-md-3">
                                             <a href="{{ route('musteri_edit', $musteri['id']) }}"
-                                            class="btn btn-info">Düzlet</a>
+                                            class="btn btn-info">{{icon_select('pen-to-square')}} Düzlet</a>
                                             <a href="{{ route('musteri_sil', $musteri['id']) }}"
-                                            class="btn btn-danger" onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">Sil</a>
-                                            <a href="{{ route('musteriler') }}" class="btn btn-secondary">Geri</a>
+                                            class="btn btn-danger" onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">{{icon_select('sil')}} Sil</a>
+                                            <a href="{{ route('musteriler') }}" class="btn btn-secondary">{{icon_select('geri')}} Geri</a>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +71,7 @@
                                         {{ Session::get('mesaj') }}
                                     </div>
                                     <div class="col-md-8 card card-header cart-title">
-                                        <a href="{{route('siparis.index',$musteri['id'])}}"> <strong>Kişi/Kurum adına kayıtlı siparişler için tıklayınız.</strong></a>
+                                        <a href="{{route('siparis.index',$musteri['id'])}}"> <strong> {{ icon_select('bilgi') }} Kişi/Kurum adına kayıtlı siparişler için tıklayınız.</strong></a>
                         
                                     </div>
                                 @endif

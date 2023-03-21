@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('common.icons')
 @section('content')
     @include('common.alert')
     <div class="container">
@@ -6,7 +7,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-title">
-                        <strong>Kullanıcı Bilgileri Güncelleme</strong>
+                        <strong>{{ icon_select('bilgi') }} Kullanıcı Bilgileri Güncelleme</strong>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -50,7 +51,7 @@
                                             <input type="submit" class="btn btn-success btn-sm" value="Kaydet">
                                             <span></span>
                                             <a href="/users" class="btn btn-sm  btn-secondary"
-                                                title="iptal">Geri</a>
+                                                title="iptal">{{ icon_select('geri') }} Geri</a>
 
                                         </div>
                                     </div>

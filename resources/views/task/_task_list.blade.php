@@ -32,14 +32,14 @@
                                             <div class="d-flex flex-row justify-content-end mb-1">
                                                 @csrf
                                                 <select class="select" name="result">
-                                                    <option value="not_completed" selected>Tamamlanmadı</option>
-                                                    <option name="completed" value="completed">Tamamla</option>
+                                                    <option value="not_completed" selected>{{ icon_select('tamamlanmadi') }} Tamamlanmadı</option>
+                                                    <option name="completed" value="completed">{{ icon_select('check') }} Tamamla</option>
                                                     <option value="deleted">Sil</option>
 
                                                 </select>
                                                 <button class="btn btn-sm btn-success"
                                                     style="margin-left: 3%;margin-right:3%"
-                                                    type="submit">onayla</button>
+                                                    type="submit">{{ icon_select('onayla') }} onayla</button>
 
 
 
@@ -53,7 +53,7 @@
             </div>
         @else
             <div class="alert alert-info" role="alert">
-                Herhangi bir not bulunmamaktadır.
+                {{ icon_select('bilgi') }} Herhangi bir not bulunmamaktadır.
 
             </div>
         @endif
