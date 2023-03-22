@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 
 
+use App\Models\Kasadefteri;
 use App\Models\Musteri;
 use App\Models\Siparis;
-
-
-
-use App\Models\Kasadefteri;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
