@@ -149,12 +149,41 @@
                     <div style="text-align: center">
 
                         @php
+                            $toplam_card=0;
+                            $toplam_eft=0;
+                            $toplam_nakit=0;
+
                             $toplam = 0;
                             foreach ($kayitlar as $kayit) {
                                 $toplam += $kayit->fiyat;
+                              
+                                if($kayit->odeme_sekli=='Kart')
+                                {
+                                    $toplam_card += $kayit->fiyat;
+                                   
+                                }
+                                elseif($kayit->odeme_sekli=='Nakit')
+                                {
+                                    $toplam_nakit += $kayit->fiyat;
+                                 
+
+                                }elseif($kayit->odeme_sekli=='Eft')
+                                {
+                                    $toplam_eft += $kayit->fiyat;
+                                 
+
+                                }
+
                             }
                             
-                            echo '<h1>' . $toplam . ' TL</h1>';
+                            echo '<h1>' . $toplam . ' TL</h1><br>';
+                            
+                            echo '<h6>Nakit : ' . $toplam_nakit. ' TL</h6>';
+                            echo '<h6>Kart  :' . $toplam_card. ' TL</h6>';
+                            echo '<h6>Eft   :' . $toplam_eft. ' TL</h6>';
+                            
+
+
                         @endphp
 
 
