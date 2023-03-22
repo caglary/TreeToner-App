@@ -7,8 +7,11 @@ namespace App\Http\Controllers;
 use App\Models\Kasadefteri;
 use App\Models\Musteri;
 use App\Models\Siparis;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Dompdf\Dompdf;
+
 use Illuminate\Http\Request;
+use Illuminate\Mail\Attachment;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\TryCatch;
 
@@ -272,7 +275,7 @@ class SiparisController extends Controller
         //kasadefterinde odeme_sekli kolonunda değişikliği belirtir.
 
         $kayit = Kasadefteri::find($id);
-        $kayit->odeme_sekli=$request->get('odeme_sekli');
+        $kayit->odeme_sekli = $request->get('odeme_sekli');
         $kayit->save();
         return redirect()->back();
     }
@@ -282,18 +285,151 @@ class SiparisController extends Controller
      * @param mixed $id
      * @return \Illuminate\Http\Response
      */
-    public function siparis_detay_pdf($id){
-        $siparis= Siparis::find($id);
-        $musteri=Musteri::find($siparis->musteri_id);
-       try {
-        $pdf = Pdf::loadView('treetoner.siparisler.pdf',['siparis'=>$siparis,'musteri'=>$musteri]);
-        return $pdf->stream($musteri->adi_soyadi.".pdf", array("Attachment" => false));
-       } catch (\Throwable $th) {
-        return redirect()->back();
-       }
+    public function siparis_detay_pdf($id)
+    {
 
-       
-    }   
+        try {
+            $siparis = Siparis::find($id);
+            $musteri = Musteri::find($siparis->musteri_id);
+            
+            $html = '
+            <?php require_once "vendor/autoload.php";?>
+            <!doctype html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   
+    <style>
+        body {
+            font-family: firefly, DejaVu Sans, sans-serif;
+           
+        }
+
+        #textarea {
+            background-color: white;
+            width: 600px;
+            height: 100px;
+            border: 1px solid green;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        .margin {
+            margin: 1px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <h1 class="margin">TREETONER</h1>
+
+    <h6 class="margin">
+        <small>
+            TREE TONER VE KARTUŞ DOLUM MERKEZİ <br>
+            ETİLER CADDESİ NO:36/A <br>
+            ETİMESGUT/ANKARA <br>
+            TELEFON : 0312 244 91 61 <br>
+            MOBİL : 0546 244 91 61</small>
+    </h6>
+    <hr>
+    <u><strong>Müşteri Bilgisi</strong></u><br>
+    Kurum Adı : ' . $musteri->kurum_adi . ' <br>
+    İsim Soysim : ' . $musteri->adi_soyadi . ' <br>
+    Cep Telefonu : ' . $musteri->telefon_1 . ' <br>
+    İş Telefonu : ' . $musteri->telefon_2 . ' <br>
+    Adres : ' . $musteri->adi_soyadi . ' <br>
+    <hr>
+    <u><strong>Sipariş Bilgisi</strong></u><br>
+
+    <table style="font-family: firefly, DejaVu Sans, sans-serif;">
+        <tr>
+            <td><label>Yazıcı Modeli :</label></td>
+            <td><label><strong>' . $siparis["yazici_model"] . '</strong></label>
+            <td>
+        </tr>
+        <tr>
+            <td><label>Yazıcı Seri No :</label></td>
+            <td><label><strong>' . $siparis["yazici_seri_no"] . '</strong></label>
+            <td>
+        </tr>
+        <tr>
+            <td><label>Usb Kablo :</label></td>
+            <td><label><strong>' . $siparis["usb_kablo"] . '</strong></label>
+            <td>
+        </tr>
+        <tr>
+            <td><label>Power Kablosu :</label></td>
+            <td><label ><strong>' . $siparis["power_kablo"] . '</strong></label>
+            <td>
+        </tr>
+
+    </table>
+    <table>
+        <tr>
+            <td><label>Arıza :</label><br>
+                <textarea name="" style="font-family: firefly, DejaVu Sans, sans-serif;" id="textarea" cols="300" rows="100">' . $siparis['ariza'] . '</textarea>
+            <td>
+        </tr>
+        <tr>
+            <td><label>Açıklama :</label><br>
+                <textarea name="" style="font-family: firefly, DejaVu Sans, sans-serif;" id="textarea" cols="300" rows="100">' . $siparis['aciklama'] . '</textarea>
+            <td>
+        </tr>
+        <tr>
+            <td><label>Sonuç :</label><br>
+                <textarea name="" style="font-family: firefly, DejaVu Sans, sans-serif;" id="textarea" cols="300" rows="100">' . $siparis['sonuc'] . '</textarea>
+            <td>
+        </tr>
+
+    </table>
+    <table>
+        <tr>
+            <td><label>Fiyat :</label></td>
+            <td><label style="font-family: firefly, DejaVu Sans, sans-serif;" >' . $siparis['fiyat'] . ' TL</label>
+            <td>
+        </tr>
+    </table>
+    <p>Bizi seçtiğiniz için teşekkür ederiz.</p>
+
+
+
+    </div>
+
+   
+
+
+</body>
+
+</html>';
+
+            // instantiate and use the dompdf class
+            $dompdf = new Dompdf();
+         
+            $dompdf->loadHtml($html);
+           
+
+            // (Optional) Setup the paper size and orientation
+            $dompdf->setPaper('A4', 'potroit');
+
+            // Render the HTML as PDF
+            $dompdf->render();
+
+            // Output the generated PDF to Browser
+            $dompdf->stream($musteri->adi_soyadi.'.pdf',array("Attachment"=>(0)));
+
+
+        } catch (\Throwable $th) {
+            return redirect()->back();
+        }
+
+
+    }
 
 
 }
