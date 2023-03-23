@@ -84,6 +84,8 @@ Route::post('/task.delete/{id}',[TaskController::class,'destroy'] )->middleware(
 
 //Sipariş Sorgu İşlemler
 Route::get("/siparis_sorgu/index",[SiparisController::class,'tum_siparisler'])->middleware('auth');
+Route::get("/benzer_siparis/{id}",[SiparisController::class,'benzer_siparis_olustur'])->middleware('auth');
+
 
 
 

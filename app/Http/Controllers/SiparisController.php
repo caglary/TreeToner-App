@@ -446,7 +446,17 @@ class SiparisController extends Controller
     //Sipariş Sorgu İşlemleri 
     public function tum_siparisler()
     {
-        $siparisler = Siparis::All();
-        return view('treetoner.siparis_sorgu.index', ['siparisler' => $siparisler]);
+        $siparisler = DB::table('siparises')
+            ->join('musteries', 'musteries.id', '=', 'siparises.musteri_id')
+            ->select('siparises.*', 'musteries.adi_soyadi')
+            ->get();
+        return view('treetoner.siparis_sorgu.index', [
+            'siparisler' => $siparisler ]);
+    }
+
+    public function benzer_siparis_olustur($id){
+        $siparis= Siparis::find($id);
+        $musteri= Musteri::find($siparis->musteri_id);
+        return view('treetoner.siparis_sorgu.benzer_siparis')->with(['siparis'=>$siparis,'musteri'=>$musteri]);
     }
 }
