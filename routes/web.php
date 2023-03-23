@@ -32,7 +32,7 @@ Route::get('/siparis_show/{siparis_id}/{musteri_id}', [SiparisController::class,
 Route::post('/siparisler/{siparis_id}/{musteri_id}', [SiparisController::class, 'update'])->name('siparis_update');
 Route::post('/siparis_delete/{siparis_id}/{musteri_id}',[SiparisController::class,'destroy'])->name('siparis.sil');
 Route::get('/siparis_show/{siparis_id}',[SiparisController::class,'siparis_goster'])->name('siparis.goster');
-Route::get('/siparis_detay_pdf/{id}',[SiparisController::class,'siparis_detay_pdf'])->middleware('auth');
+Route::get('/siparis_detay_pdf/{id}',[SiparisController::class,'siparis_detay_pdf'])->middleware('auth')->name('pdfStream');
 
 
 Auth::routes([
@@ -82,8 +82,8 @@ Route::post('/task.update',[TaskController::class,'update'] )->middleware('auth'
 Route::get('/task/{result}',[TaskController::class,'result'] )->middleware('auth');
 Route::post('/task.delete/{id}',[TaskController::class,'destroy'] )->middleware('auth');
 
-
-
+//Sipariş Sorgu İşlemler
+Route::get("/siparis_sorgu/index",[SiparisController::class,'tum_siparisler'])->middleware('auth');
 
 
 

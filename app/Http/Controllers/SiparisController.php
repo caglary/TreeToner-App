@@ -285,13 +285,14 @@ class SiparisController extends Controller
      * @param mixed $id
      * @return \Illuminate\Http\Response
      */
+    //siparişlerin müşteri bilgisi ile birlikte pdf çıktısını aldığımız fonksiyon
     public function siparis_detay_pdf($id)
     {
 
         try {
             $siparis = Siparis::find($id);
             $musteri = Musteri::find($siparis->musteri_id);
-            
+
             $html = '
             <?php require_once "vendor/autoload.php";?>
             <!doctype html>
@@ -305,7 +306,7 @@ class SiparisController extends Controller
     <style>
         body {
             font-family: firefly, DejaVu Sans, sans-serif;
-           
+           font-size:12px;
         }
 
         #textarea {
@@ -327,26 +328,28 @@ class SiparisController extends Controller
 <body>
 
 
-    <h1 class="margin">TREETONER</h1>
+    <h3 class="margin">TREETONER</h3>
 
     <h6 class="margin">
-        <small>
-            TREE TONER VE KARTUŞ DOLUM MERKEZİ <br>
-            ETİLER CADDESİ NO:36/A <br>
+        <i><small>
+            TONER VE KARTUŞ DOLUM MERKEZİ <br>
+            ETİLER CADDESİ NO:36/A 
             ETİMESGUT/ANKARA <br>
-            TELEFON : 0312 244 91 61 <br>
+            TELEFON : 0312 244 91 61 
             MOBİL : 0546 244 91 61</small>
-    </h6>
+    </h6></i>
     <hr>
     <u><strong>Müşteri Bilgisi</strong></u><br>
+    <div style="margin:10px;">
     Kurum Adı : ' . $musteri->kurum_adi . ' <br>
     İsim Soysim : ' . $musteri->adi_soyadi . ' <br>
     Cep Telefonu : ' . $musteri->telefon_1 . ' <br>
     İş Telefonu : ' . $musteri->telefon_2 . ' <br>
     Adres : ' . $musteri->adi_soyadi . ' <br>
-    <hr>
+    </div>
+    
     <u><strong>Sipariş Bilgisi</strong></u><br>
-
+<div style="margin:10px;">
     <table style="font-family: firefly, DejaVu Sans, sans-serif;">
         <tr>
             <td><label>Yazıcı Modeli :</label></td>
@@ -369,7 +372,8 @@ class SiparisController extends Controller
             <td>
         </tr>
 
-    </table>
+    </table></div>
+    <div style="margin:10px;">
     <table>
         <tr>
             <td><label>Arıza :</label><br>
@@ -387,16 +391,24 @@ class SiparisController extends Controller
             <td>
         </tr>
 
-    </table>
+    </table></div>
+    <div style="padding:3%;">
     <table>
         <tr>
             <td><label>Fiyat :</label></td>
             <td><label style="font-family: firefly, DejaVu Sans, sans-serif;" >' . $siparis['fiyat'] . ' TL</label>
             <td>
         </tr>
+        
     </table>
-    <p>Bizi seçtiğiniz için teşekkür ederiz.</p>
 
+    <table>
+    <tr>
+    <td> <i>Bizi seçtiğiniz için teşekkür eder, iyi günler dileriz.</i>
+    </td>
+    </tr>
+    </table>
+        </div>
 
 
     </div>
@@ -410,9 +422,9 @@ class SiparisController extends Controller
 
             // instantiate and use the dompdf class
             $dompdf = new Dompdf();
-         
+
             $dompdf->loadHtml($html);
-           
+
 
             // (Optional) Setup the paper size and orientation
             $dompdf->setPaper('A4', 'potroit');
@@ -421,7 +433,7 @@ class SiparisController extends Controller
             $dompdf->render();
 
             // Output the generated PDF to Browser
-            $dompdf->stream($musteri->adi_soyadi.'.pdf',array("Attachment"=>(0)));
+            return $dompdf->stream($musteri->adi_soyadi . '.pdf', array("Attachment" => (0)));
 
 
         } catch (\Throwable $th) {
@@ -431,5 +443,10 @@ class SiparisController extends Controller
 
     }
 
-
+    //Sipariş Sorgu İşlemleri 
+    public function tum_siparisler()
+    {
+        $siparisler = Siparis::All();
+        return view('treetoner.siparis_sorgu.index', ['siparisler' => $siparisler]);
+    }
 }

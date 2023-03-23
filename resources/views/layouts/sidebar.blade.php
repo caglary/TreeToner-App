@@ -1,3 +1,5 @@
+
+@include('common.icons')
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-expand sidebar-dark-primary "
     style="
@@ -39,6 +41,19 @@ display: inline-block;
 
 
                             Müşteri İşlemleri
+
+                        </p>
+
+                    </a>
+
+                </li>
+                <li class="nav-item">
+                    <a href="/siparis_sorgu/index" class="nav-link ">
+                        {{icon_select('shopping')}}
+                        <p>
+
+
+                            Sipariş Sorgulama
 
                         </p>
 

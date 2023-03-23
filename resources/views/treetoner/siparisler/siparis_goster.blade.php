@@ -79,7 +79,7 @@
                                             href="{{ route('siparis.index', ['musteri_id' => $siparis['musteri_id']]) }}"
                                             role="button">{{icon_select('geri')}} Geri</a>
 
-                                            <a class="btn btn-warning btn-sm "  href="/siparis_detay_pdf/{{$siparis->id}}" role="button">pdf</a>
+                                            <a class="btn btn-warning btn-sm "  href="/siparis_detay_pdf/{{$siparis->id}}" target="_blank" role="button">pdf</a>
 
                                     </div>
 
