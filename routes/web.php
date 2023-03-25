@@ -36,7 +36,7 @@ Route::get('/siparis_detay_pdf/{id}',[SiparisController::class,'siparis_detay_pd
 
 
 Auth::routes([
-    
+    //burası hatalı
 ]);
  
 
