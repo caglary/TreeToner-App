@@ -40,10 +40,12 @@ class KasadefteriController extends Controller
         foreach ($kayitlar as $kayit) {
             $kayit->created_at = Str::substr($kayit->created_at, 0, 10);
         }
+        $startOfWeek=substr(Carbon::now()->startOfWeek(),0,10);
+        $endOfWeek=substr(Carbon::now()->endOfWeek(),0,10);
+        $tarihBilgisi="Bu ahafta olarak gösterilen kayıtlar ".$startOfWeek." ile ".$endOfWeek." tarihleri arasındaki kayıtları kapsar.";
 
 
-
-        return view('kasadefteri.all_record', ['kayitlar' => $kayitlar, 'metin' => 'Haftalık Tablo']);
+        return view('kasadefteri.all_record', ['kayitlar' => $kayitlar, 'metin' => 'Haftalık Tablo','tarihBilgisi' =>$tarihBilgisi]);
 
     }
     public function index_daily()
@@ -55,9 +57,15 @@ class KasadefteriController extends Controller
         foreach ($kayitlar as $kayit) {
             $kayit->created_at = Str::substr($kayit->created_at, 0, 10);
         }
+        $startOfDay=substr(Carbon::now()->startOfDay(),0,10);
+        $tarihBilgisi=$startOfDay." içerisindeki kayıtları kapsar.";
+        return view('kasadefteri.all_record', [
+            'kayitlar' => $kayitlar,
+             'metin' => 'Günlük Tablo',
+             'tarihBilgisi' =>$tarihBilgisi
+             
 
-
-        return view('kasadefteri.all_record', ['kayitlar' => $kayitlar, 'metin' => 'Günlük Tablo']);
+        ]);
 
     }
     public function index_monthly()
@@ -67,12 +75,20 @@ class KasadefteriController extends Controller
             ->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])
             ->orderBy('created_at', 'desc')
             ->get();
-
+        $startOfMonth=substr(Carbon::now()->startOfMonth(),0,10);
+        $endOfMonth=substr(Carbon::now()->endOfMonth(),0,10);
+        $tarihBilgisi="Bu ay olarak gösterilen kayıtlar ".$startOfMonth." ile ".$endOfMonth." tarihleri arasındaki kayıtları kapsar.";
+        
         foreach ($kayitlar as $kayit) {
             $kayit->created_at = Str::substr($kayit->created_at, 0, 10);
         }
 
-        return view('kasadefteri.all_record', ['kayitlar' => $kayitlar, 'metin' => 'Aylık Tablo']);
+        return view('kasadefteri.all_record', [
+            'kayitlar' => $kayitlar, 
+            'metin' => 'Aylık Tablo',
+            'tarihBilgisi' =>$tarihBilgisi
+            
+    ]);
 
     }
     public function index_yearly()
@@ -86,8 +102,9 @@ class KasadefteriController extends Controller
         foreach ($kayitlar as $kayit) {
             $kayit->created_at = Str::substr($kayit->created_at, 0, 10);
         }
-
-        return view('kasadefteri.all_record', ['kayitlar' => $kayitlar, 'metin' => 'Yıllık Tablo']);
+        $startOfYear=substr(Carbon::now()->startOfDay(),0,4);
+        $tarihBilgisi=$startOfYear." yılı içerisindeki kayıtları kapsar.";
+        return view('kasadefteri.all_record', ['kayitlar' => $kayitlar, 'metin' => 'Yıllık Tablo','tarihBilgisi' =>$tarihBilgisi]);
 
     }
 

@@ -60,7 +60,10 @@ display: inline-block;
                     </a>
 
                 </li>
-                @if (auth::user()->id == 1)
+                @php
+                
+                @endphp
+                @if (Auth::user()->id == 1)
                     <li class="nav-item">
                         <a href="/users" class="nav-link">
                             <i class="fa-solid fa-user"></i>
