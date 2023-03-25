@@ -42,7 +42,7 @@ class KasadefteriController extends Controller
         }
         $startOfWeek=substr(Carbon::now()->startOfWeek(),0,10);
         $endOfWeek=substr(Carbon::now()->endOfWeek(),0,10);
-        $tarihBilgisi="Bu ahafta olarak gösterilen kayıtlar ".$startOfWeek." ile ".$endOfWeek." tarihleri arasındaki kayıtları kapsar.";
+        $tarihBilgisi="Bu hafta olarak gösterilen kayıtlar ".$startOfWeek." ile ".$endOfWeek." tarihleri arasındaki kayıtları kapsar.";
 
 
         return view('kasadefteri.all_record', ['kayitlar' => $kayitlar, 'metin' => 'Haftalık Tablo','tarihBilgisi' =>$tarihBilgisi]);
