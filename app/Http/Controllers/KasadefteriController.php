@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
-use App\Models\Kasadefteri;
+
 use Carbon\Carbon;
+use App\Models\Kasadefteri;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use mysqli;
+use PhpParser\Node\Stmt\Foreach_;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-use PhpParser\Node\Stmt\Foreach_;
 
 class KasadefteriController extends Controller
 {
@@ -109,16 +111,7 @@ class KasadefteriController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return 'create';
-
-    }
+  
 
     /**
      * Store a newly created resource in storage.
@@ -160,39 +153,9 @@ class KasadefteriController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+   
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+ 
 
     /**
      * Remove the specified resource from storage.
@@ -214,5 +177,80 @@ class KasadefteriController extends Controller
         }
        
 
+    }
+    public function detail_of_years(){
+        $now=Carbon::now();
+        // $servername='localhost';
+        // $username='root';
+        // $password='';
+        // $dbname='treetone_treetoner';
+
+        // $conn=new mysqli($servername,$username,$password,$dbname);
+        // $sql='select * from kasadefteri';
+        // $result=$conn->query($sql);
+        // $gelir_toplam=[];
+        // $gider_toplam=[];
+        // $kalan=[];
+        $aylar=[1=>'Ocak',
+                2=>'Şubat',
+                3=>'Mart',
+                4=>'Nisan',
+                5=>'Mayıs',
+                6=>'Haziran',
+                7=>'Temmuz',
+                8=>'Ağustos',
+                9=>'Eylül',
+                10=>'Ekim',
+                11=>'Kasım',
+                12=>'Aralık'];
+       
+
+        for ($i=0; $i < 12; $i++) { 
+            $data = DB::table('kasadefteri')
+            ->whereMonth('created_at','=',($i+1))   
+            ->where('islem','=','gelir')   
+            ->sum('fiyat');
+            $gelir_toplam[$i][$i]=$data;
+
+        }
+        for ($i=0; $i < 12; $i++) { 
+            $data = DB::table('kasadefteri')
+            ->whereMonth('created_at','=',$i+1)   
+            ->where('islem','=','gider')   
+            ->sum('fiyat');
+            $gider_toplam[$i][$i]=$data;
+
+
+        }
+
+        for ($i=0; $i < 12; $i++) { 
+            $data = DB::table('kasadefteri')
+            ->whereMonth('created_at','=',$i+1)   
+            ->sum('fiyat');
+            $kalan[$i][$i]=$data;
+
+
+        }
+        $toplamKalan=0;
+        $tumGelir=0;
+        $tumGider=0;
+        for ($i=0; $i < 12; $i++) { 
+            $toplamKalan+=$kalan[$i][$i];
+            $tumGelir+=$gelir_toplam[$i][$i];
+            $tumGider+=$gider_toplam[$i][$i];
+
+        }
+       
+        return view('kasadefteri.detail_of_year')->with(['gelir'=>$gelir_toplam,
+                                                'gider'=>$gider_toplam,
+                                                'kalan'=>$kalan,
+                                                'aylar'=>$aylar,
+                                                'toplamKalan'=>$toplamKalan,
+                                                'toplamGelir'=>$tumGelir,
+                                                'toplamGider'=>$tumGider
+                                                ]
+                                                
+                                            );
+      
     }
 }

@@ -22,6 +22,7 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th>Tarih</th>
                     <th>Müşteri</th>
                     <th>Yazıcı Model</th>
                     <th>Yazıcı Seri No</th>
@@ -40,6 +41,7 @@
                 @foreach ($siparisler as $siparis)
                     @csrf
                     <tr>
+                        <td>{{date('d/m/Y',strtotime($siparis->created_at))}}</td>
                         {{-- <td>{{$siparis->created_at->format('d/m/Y')}}</td> --}}
                         <td>
                            {{$siparis->adi_soyadi}}

@@ -209,7 +209,7 @@ class SiparisController extends Controller
         //$siparisler = Siparis::where('tahsilat', '!=', 'money_paid')->get();
         $siparisler = DB::table('siparises')
             ->join('musteries', 'siparises.musteri_id', '=', 'musteries.id')
-            ->select('musteries.adi_soyadi', 'siparises.yazici_model', 'siparises.ariza', 'siparises.fiyat', 'siparises.id')
+            ->select('musteries.adi_soyadi', 'siparises.yazici_model', 'siparises.ariza', 'siparises.fiyat', 'siparises.id','siparises.created_at')
             ->where('siparises.tahsilat', '!=', 'money_paid')
             ->get();
 
@@ -351,6 +351,11 @@ class SiparisController extends Controller
     <u><strong>Sipariş Bilgisi</strong></u><br>
 <div style="margin:10px;">
     <table style="font-family: firefly, DejaVu Sans, sans-serif;">
+         <tr>
+            <td><label>Sipariş Tarihi :</label></td>
+            <td><label><strong>' . date('d/m/Y',strtotime($siparis["created_at"])) . '</strong></label>
+            <td>
+        </tr>
         <tr>
             <td><label>Yazıcı Modeli :</label></td>
             <td><label><strong>' . $siparis["yazici_model"] . '</strong></label>

@@ -3,7 +3,7 @@
 
 @section('content')
     @include('common.alert')
-   
+
     <div class="row justify-content-center">
         <div class="col-md-3">
             <div class="card">
@@ -13,9 +13,11 @@
             </div>
         </div>
         <div style="margin:3%">
-            <a class="btn btn-outline-success" href="/kasadefteri" style="text-align:left;" role="button">{{ icon_select('gunluk-islemler') }} Günlük İşlemler</a>
+            <a class="btn btn-outline-success" href="/kasadefteri" style="text-align:left;"
+                role="button">{{ icon_select('gunluk-islemler') }} Günlük İşlemler</a>
             @if (auth::user()->id == 1)
-            <a class="btn btn-outline-success" href="/kasadefteri_daily" style="text-align:left;" role="button">{{ icon_select('tum-kayitlar') }} Tüm Kayıtlar</a>
+                <a class="btn btn-outline-success" href="/kasadefteri_daily" style="text-align:left;"
+                    role="button">{{ icon_select('tum-kayitlar') }} Tüm Kayıtlar</a>
             @endif
         </div>
 
@@ -24,12 +26,14 @@
             <a href="/kasadefteri_weekly" class="btn btn-secondary">{{ icon_select('bu-hafta') }} Bu Hafta</a>
             <a href="/kasadefteri_monthly" class="btn btn-secondary">{{ icon_select('bu-ay') }} Bu Ay</a>
             <a href="/kasadefteri_yearly" class="btn btn-secondary">{{ icon_select('bu-yil') }} Bu Yıl</a>
+            <a href="/detail_of_year" class="btn btn-secondary">Yıllık Rapor</a>
+
 
         </div>
 
         <div>
             @isset($tarihBilgisi)
-                {{$tarihBilgisi}}
+                {{ $tarihBilgisi }}
             @endisset
 
             @php
@@ -40,8 +44,8 @@
                 
                 echo '<h3 style="text-align: center;margin:1%;">' . $metin . ' ( ' . $toplam . ' TL )</h3>';
                 
-                    
             @endphp
+  
 
         </div>
         {{-- Tablo --}}
@@ -75,7 +79,8 @@
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-sm btn-squre btn-outline-danger" type="submit"
-                                        onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">{{ icon_select('sil') }} Kaydı
+                                        onclick="return confirm('Kaydı silmek istediğinizden emin misiniz? Evet-(OK) Hayır-(Cancel)')">{{ icon_select('sil') }}
+                                        Kaydı
                                         Sil</button>
 
                                 </form>

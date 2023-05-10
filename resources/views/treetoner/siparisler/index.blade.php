@@ -47,6 +47,7 @@
                 <thead>
                     <tr>
                         <td></td>
+                        <td>Tarih</td>
                         <th>Model</th>
                         <th>Seri No</th>
                         <th>Arıza</th>
@@ -75,6 +76,7 @@
                                     </td>
                                 @endif
                             @endif
+                            <td>{{date('d/m/Y',strtotime($siparis->created_at))}}</td>
                             <td>{{ $siparis->yazici_model }}</td>
                             <td>{{ $siparis->yazici_seri_no }}</td>
 

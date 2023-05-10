@@ -36,6 +36,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
+                            <th>Tarih</th>
                             <th>İsim</th>
                             <th>Yazıcı Model</th>
                             <th>ariza</th>
@@ -49,7 +50,7 @@
 
                         @foreach ($siparisler as $siparis)
                             <tr>
-
+                                <td>{{date('d/m/Y',strtotime($siparis->created_at))}}</td>
                                 <td>{{ $siparis->adi_soyadi }}</td>
                                 <td>{{ $siparis->yazici_model }}</td>
 
